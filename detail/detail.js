@@ -4,12 +4,11 @@ const tracks = songsData;
 
 const modal = document.getElementById('modal');
 
-modal.style.display = "none";
-
 const titleModel = document.getElementById('title-modal');
 const authorModel = document.getElementById('author-modal');
 const imgModel = document.getElementById('img-modal');
 const audioModel = document.getElementById('audio-modal');
+
 
 
 export const openModal = (item) => {
@@ -21,16 +20,19 @@ export const openModal = (item) => {
     audioModel.play();
 }
 
+
 window.onclick = function (event) {
     if (event.target === modal) {
-      modal.style.display = "none";
+        modal.style.display = "none";
+        audioModel.pause();
+        imgPlayOrStop.src = '/assets/images/svg/pause.svg';
     }
 }
 
 let currentIndex = 0;
 
-const prev = document.getElementById('prev');
-const next = document.getElementById('next');
+const prev = document.getElementById('btn-prev');
+const next = document.getElementById('btn-next');
 
 const load = (index) => {
     titleModel.textContent = tracks[index].title;
@@ -38,7 +40,7 @@ const load = (index) => {
     imgModel.src = tracks[index].image;
     audioModel.src = tracks[index].audio;
 }
-    
+
 prev.addEventListener('click', () => {
     currentIndex = (currentIndex - 1 + tracks.length) % tracks.length;
     load(currentIndex);
@@ -52,19 +54,19 @@ next.addEventListener('click', () => {
 });
 
 const btnPlayOrStop = document.getElementById('btn-play-or-stop');
-btnPlayOrStop.textContent = 'Stop';
+const imgPlayOrStop = document.getElementById('img-play-or-stop');
 
-btnPlayOrStop.onclick = ()=> playOrStop(audioModel, btnPlayOrStop);
+btnPlayOrStop.onclick = () => playOrStop(audioModel, imgPlayOrStop);
 
-const playOrStop = (audio, playPauseBtn) => {
+const playOrStop = (audio, img) => {
     if (audio.paused) {
         console.log(1);
-      audio.play();
-      playPauseBtn.textContent = 'Pause';
+        audio.play();
+        img.src = '/assets/images/svg/pause.svg';
     } else {
         console.log(12);
-      audio.pause();
-      playPauseBtn.textContent = 'Play';
+        audio.pause();
+        img.src = '/assets/images/svg/play.svg';
     }
 }
 
@@ -94,17 +96,27 @@ const restart = document.getElementById('btn-restart');
 restart.onclick = () => audioModel.currentTime = 0;
 
 
+// рандом
 const random = document.getElementById('btn-random');
-random.onclick = () =>  {
-    const randomItem = Math.floor(Math.random() * tracks.length)
-    load(randomItem);
+random.onclick = () => showRandom(currentIndex);
+
+const showRandom = () => playRandomSong();
+
+let previousSong = null;
+
+function playRandomSong() {
+    let randomIndex;
+    do {
+        randomIndex = Math.floor(Math.random() * tracks.length);
+    } while (tracks[randomIndex] === previousSong);
+
+    previousSong = tracks[randomIndex];
+
+    console.log(randomIndex);
+
+    load(randomIndex);
     audioModel.play();
-};
-
-
-
-
-
+}
 
 
 
