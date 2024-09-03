@@ -1,0 +1,56 @@
+@import url("/assets/null.css");
+@import url("/assets/fonts.css");
+@import url("/detail/detail.css");
+* {
+  outline: 1px solid green !important;
+}
+:root {
+  --background: #0f0817;
+  --white: #fff;
+}
+html,
+body {
+  font-family: "Urbanist";
+  background-color: var(--background);
+  color: var(--white);
+}
+.wrapper {
+  width: 100%;
+}
+
+.search-input {
+  padding: 15px 20px 15px 45px;
+  background-color: rgba(255, 255, 255, 0.06);
+  width: 100%;
+  border-radius: 12px;
+  font-size: 16px;
+  color: var(--white);
+  font-weight: 300;
+  background-image: url("/assets/images/svg/search.svg");
+  background-repeat: no-repeat;
+  background-position: left 10px center;
+}
+
+.item-song {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  cursor: pointer;
+}
+
+.title-song {
+  margin: 0px 0px 10px 0px;
+}
+
+.img-song {
+  width: 60px;
+  height: 60px;
+}
+
+.btns {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 10px;
+}

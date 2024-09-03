@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <link
+      rel="stylesheet"
+      href="style.css"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      href="/assets/images/png/favicon.png"
+    />
+    <title>Audio</title>
+  </head>
+
+  <body>
+  
+    <div class="wrapper">
+
+      <div id="modal">
+        <div class="modal-content">
+          <div id="title-modal"></div>
+          <div id="author-modal"></div>
+          <img id="img-modal" alt="#"></img>
+          <audio id="audio-modal"></audio>
+          <input id="progress" type="range" min="0" max="100" value="0">
+          <button id="btn-play-or-stop" type="button"></button>
+          <button id="btn-restart" type="button">Перезапустить</button>
+          <div id="time"></div>
+          <button id="btn-random" type="button">Random</button>
+          <div class="controls">
+              <button id="prev">Предыдущий</button>
+              <button id="next">Следующий</button>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <input
+          type="text"
+          class="search-input"
+          id="search-input"
+          placeholder="search"
+        />
+      </div>
+
+      <input
+        type="text"
+        id="new-song"
+      />
+      <button id="btn-add-song">Add</button>
+
+      <div id="songs-list"></div>
+      
+    </div>
+
+    <script
+      type="module"
+      src="./main.js"
+    ></script>
+
+  </body>
+</html>

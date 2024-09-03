@@ -1,0 +1,17 @@
+@font-face {
+    font-family: 'Urbanist';
+    src: url('/assets/fonts/Urbanist-Light.woff2'), format('woff2');
+    font-weight: 300;
+}
+/* 
+@font-face {
+    font-family: 'Urbanist';
+    src: url('/assets/fonts/Urbanist-LightItalic.woff2'), format('woff2');
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: 'Urbanist';
+    src: url('/assets/fonts/Urbanist-Medium.woff2'), format('woff2');
+    font-weight: 700;
+} */
