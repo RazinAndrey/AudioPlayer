@@ -5,14 +5,16 @@
   outline: 1px solid green !important;
 }
 :root {
-  --background: #0f0817;
-  --white: #fff;
+  --background-color: #0f0817;
+  --white-color: #fff;
+  --violet-color: #7150d0;
+  --violet-color-rgb: rgb(113 , 80 , 208);
 }
 html,
 body {
   font-family: "Urbanist";
-  background-color: var(--background);
-  color: var(--white);
+  background-color: var(--background-color);
+  color: var(--white-color);
 }
 .wrapper {
   width: 100%;

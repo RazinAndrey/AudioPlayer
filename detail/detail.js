@@ -9,8 +9,7 @@ const authorModel = document.getElementById('author-modal');
 const imgModel = document.getElementById('img-modal');
 const audioModel = document.getElementById('audio-modal');
 
-
-
+// открываем окно
 export const openModal = (item) => {
     modal.style.display = "block";
     titleModel.textContent = item.title;
@@ -20,7 +19,7 @@ export const openModal = (item) => {
     audioModel.play();
 }
 
-
+// закрываем окно
 window.onclick = function (event) {
     if (event.target === modal) {
         modal.style.display = "none";
@@ -60,11 +59,9 @@ btnPlayOrStop.onclick = () => playOrStop(audioModel, imgPlayOrStop);
 
 const playOrStop = (audio, img) => {
     if (audio.paused) {
-        console.log(1);
         audio.play();
         img.src = '/assets/images/svg/pause.svg';
     } else {
-        console.log(12);
         audio.pause();
         img.src = '/assets/images/svg/play.svg';
     }
@@ -75,13 +72,20 @@ const progress = document.getElementById('progress');
 // заставляем audio двигаться с input
 progress.addEventListener('input', () => {
     audioModel.currentTime = (progress.value * audioModel.duration) / 100;
-    console.log(audioModel.currentTime);
+    // console.log(audioModel.currentTime);
 });
 
 // заставляем input двигаться с audio
 audioModel.addEventListener('timeupdate', () => {
     progress.value = (audioModel.currentTime / audioModel.duration) * 100;
     showTime(progress.value);
+
+    
+    
+    // красим 
+    const progressColor = (progress.value / progress.max) * 100;
+    progress.style.background = `linear-gradient(to right, var(--violet-color) ${progressColor}%, #ccc ${progressColor}%)`;
+   // console.log(progressColor);
 });
 
 const time = document.getElementById('time');
@@ -119,4 +123,27 @@ function playRandomSong() {
 }
 
 
+// громкость
+const volumeControl = document.getElementById('volume');
 
+audioModel.volume = volumeControl.value;
+
+volumeControl.addEventListener('input', () => {
+    audioModel.volume = volumeControl.value;
+});
+
+
+const btnVolume = document.getElementById('volume-dtn');
+const imgVolume = document.getElementById('volume-img');
+
+btnVolume.onclick = () => {
+    if (audioModel.volume) {
+        imgVolume.src = '/assets/images/svg/off_volume.svg';
+        audioModel.volume = 0;
+        volumeControl.value = 0;
+    } else {
+        imgVolume.src = '/assets/images/svg/on_volume.svg';
+        audioModel.volume = 1;
+        volumeControl.value = 1;
+    }
+};

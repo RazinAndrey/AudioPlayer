@@ -22,42 +22,14 @@
   
     <div class="wrapper">
 
-      <div id="modal" class="modal">
-        <div class="modal-content">
-        
-
-          <div class="block-img-modal">
-            <img id="img-modal" class="img-modal" alt="#"></img>
-          </div>
-          <div id="title-modal"></div>
-          <div id="author-modal"></div>
-          <audio id="audio-modal"></audio>
-
-
-          <input id="progress" class="progress" type="range" min="0" max="100" value="0">
-        
-          <div id="time"></div>
-         
-          <div class="controls">
-              <button id="btn-random" class="btn-random" type="button">
-                <img class="img-random" src="/assets/images/svg/random.svg" alt="#">
-              </button>
-              <button id="btn-prev" class="btn-prev">
-                <img class="img-prev" src="/assets/images/svg/prev.svg" alt="#">
-              </button>
-              <button id="btn-play-or-stop" class="btn-play-or-stop" type="button">
-                <img  id="img-play-or-stop" class="img-play-or-stop" src="/assets/images/svg/pause.svg" alt="#">
-              </button>
-              <button id="btn-next" class="btn-next">
-                <img class="img-next" src="/assets/images/svg/next.svg" alt="#">
-              </button>
-              <button id="btn-restart" class="btn-restart" type="button">
-                <img class="img-restart" src="/assets/images/svg/restart.svg" alt="#">
-              </button>
-          </div>
-        </div>
-      </div>
-
+      <div id="audio-player"></div>
+      <script>
+        fetch('detail/detail.html')
+          .then(response => response.text())
+          .then(html => document.getElementById('audio-player').innerHTML = html)
+          .catch(error => console.error('Ошибка:', error));
+      </script>
+      
       <div>
         <input
           type="text"
