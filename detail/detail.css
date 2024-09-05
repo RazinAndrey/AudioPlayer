@@ -30,7 +30,7 @@
   outline: none;
   border-radius: 15px;
   height: 3px;
-  background: #ccc;
+  /* background: red; */
 }
 .progress::-webkit-slider-thumb {
   -webkit-appearance: none;
@@ -97,16 +97,13 @@
 }
 
 .img-play-or-stop {
-  width: 50%;
-  height: 50%;
+  width: 100%;
+  height: 100%; 
   /* margin-left: 5px; */
   filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(288deg)
     brightness(102%) contrast(102%);
 }
 .btn-play-or-stop {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   width: 60px;
   height: 60px;
   background-color: var(--violet-color);
@@ -145,6 +142,7 @@
   border-radius: 15px;
   height: 3px;
   background: #ccc;
+  /* display: none; */
 }
 .volume::-webkit-slider-thumb {
   -webkit-appearance: none;

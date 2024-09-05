@@ -10,13 +10,17 @@ const imgModel = document.getElementById('img-modal');
 const audioModel = document.getElementById('audio-modal');
 
 // открываем окно
-export const openModal = (item) => {
+export const openModal = (index) => {
     modal.style.display = "block";
-    titleModel.textContent = item.title;
-    authorModel.textContent = item.author;
-    imgModel.src = item.image;
-    audioModel.src = item.audio;
+    titleModel.textContent = tracks[index].title;
+    authorModel.textContent = tracks[index].author;
+    imgModel.src = tracks[index].image;
+    audioModel.src = tracks[index].audio;
+
     audioModel.play();
+
+    random.onclick = () => showRandom(index);
+
     colorVolume();
 }
 
@@ -34,25 +38,15 @@ let currentIndex = 0;
 const prev = document.getElementById('btn-prev');
 const next = document.getElementById('btn-next');
 
-const load = (index) => {
-    titleModel.textContent = tracks[index].title;
-    authorModel.textContent = tracks[index].author;
-    imgModel.src = tracks[index].image;
-    audioModel.src = tracks[index].audio;
-    colorVolume()
+prev.onclick = () => {
+    currentIndex = (currentIndex - 1 + tracks.length) % tracks.length;
+    openModal(currentIndex);
 }
 
-prev.addEventListener('click', () => {
-    currentIndex = (currentIndex - 1 + tracks.length) % tracks.length;
-    load(currentIndex);
-    audioModel.play();
-});
-
-next.addEventListener('click', () => {
+next.onclick = () =>  {
     currentIndex = (currentIndex + 1) % tracks.length;
-    load(currentIndex);
-    audioModel.play();
-});
+    openModal(currentIndex);
+}
 
 const btnPlayOrStop = document.getElementById('btn-play-or-stop');
 const imgPlayOrStop = document.getElementById('img-play-or-stop');
@@ -71,57 +65,63 @@ const playOrStop = (audio, img) => {
 
 const progress = document.getElementById('progress');
 
-// заставляем audio двигаться с input
-progress.addEventListener('input', () => {
-    audioModel.currentTime = (progress.value * audioModel.duration) / 100;
-    // console.log(audioModel.currentTime);
-});
-
 // заставляем input двигаться с audio
 audioModel.addEventListener('timeupdate', () => {
-    progress.value = (audioModel.currentTime / audioModel.duration) * 100;
+    progress.value = audioModel.currentTime;
+    progress.max = audioModel.duration;
     showTime(progress.value);
-
-
-
-    // красим 
-    const progressColor = (progress.value / progress.max) * 100;
-    progress.style.background = `linear-gradient(to right, var(--violet-color) ${progressColor}%, #ccc ${progressColor}%)`;
-    // console.log(progressColor);
+    colorProgress();
 });
 
-const time = document.getElementById('time');
+// заставляем audio двигаться с input
+progress.addEventListener('input', () => {
+    audioModel.currentTime = progress.value;
+    audioModel.play();
+    colorProgress();
+});
 
+// красим 
+const colorProgress = () => {
+    const progressColor = (progress.value / progress.max) * 100;
+    progress.style.background = `linear-gradient(to right, var(--violet-color) ${progressColor}%, #ccc ${progressColor}%`;
+    const number = Math.floor(progressColor);
+    if (number === 99) {
+        imgPlayOrStop.src = '/assets/images/svg/play.svg';
+        audioModel.pause();
+    }else{
+        // playOrStop(audioModel, imgPlayOrStop)
+    }
+}
+
+// время
+const time = document.getElementById('time');
 const showTime = (seconds) => {
     const minutes = Math.floor(audioModel.currentTime / 60);
     seconds = Math.floor(audioModel.currentTime % 60);
     time.textContent = `${minutes < 10 ? '0' : ''}${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
 }
 
+// начать заново
 const restart = document.getElementById('btn-restart');
-restart.onclick = () => audioModel.currentTime = 0;
+restart.onclick = () => restartAudio();
+const restartAudio = () => {
+    audioModel.currentTime = 0;
+    progress.value = 0;
+}
 
 
 // рандом
 const random = document.getElementById('btn-random');
-random.onclick = () => showRandom(currentIndex);
 
-const showRandom = () => playRandomSong();
-
-let previousSong = null;
-
-function playRandomSong() {
+function showRandom(index) {
     let randomIndex;
     do {
         randomIndex = Math.floor(Math.random() * tracks.length);
-    } while (tracks[randomIndex] === previousSong);
+    } while (randomIndex === index);
 
-    previousSong = tracks[randomIndex];
+    const song = randomIndex;
 
-    console.log(randomIndex);
-
-    load(randomIndex);
-    audioModel.play();
+    openModal(song);
 }
 
 

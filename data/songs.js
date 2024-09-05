@@ -15,12 +15,12 @@ export const songsData = [
         audio: '/assets/music/music2.mp3',
         completed: false
     },
-    {
-        id: 3,
-        title: 'Нормально',
-        author: 'author3',
-        image: '/assets/images/png/image3.png',
-        audio: '/assets/music/music3.mp3',
-        completed: false
-    }
+    // {
+    //     id: 3,
+    //     title: 'Нормально',
+    //     author: 'author3',
+    //     image: '/assets/images/png/image3.png',
+    //     audio: '/assets/music/music3.mp3',
+    //     completed: false
+    // }
 ];

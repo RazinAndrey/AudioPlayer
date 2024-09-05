@@ -6,15 +6,13 @@ let songs = songsData;
 const renderSongs = (songs) => {
   const songsList = document.getElementById("songs-list");
   songsList.innerHTML = ''; // Очищаем список перед отрисовкой
-  songs.forEach((song) => {
+  songs.forEach((song, index) => {
     const songItem = document.createElement('div');
     songItem.className = 'item-song';
     songsList.appendChild(songItem);
 
-
-
     // просмотр одной песни
-    songItem.onclick = () => openModal(song);
+    songItem.onclick = () => openModal(index);
 
 
     const songImg = document.createElement('img');
@@ -101,10 +99,3 @@ const searchSongs = () => {
 
 searchInput.addEventListener('input', () => searchSongs());
 
-
-
-// window.onclick = function (event) {
-//   if (event.target == modal) {
-//     modal.style.display = 'none';
-//   }
-// }
