@@ -12,7 +12,7 @@ export const songsData = [
         title: 'Как дела?',
         author: 'author2',
         image: '/assets/images/png/image2.png',
-        audio: '/assets/music/music1.mp3',
+        audio: '/assets/music/music2.mp3',
         completed: false
     },
     {
@@ -20,7 +20,7 @@ export const songsData = [
         title: 'Нормально',
         author: 'author3',
         image: '/assets/images/png/image3.png',
-        audio: '/assets/music/music1.mp3',
+        audio: '/assets/music/music3.mp3',
         completed: false
     }
 ];

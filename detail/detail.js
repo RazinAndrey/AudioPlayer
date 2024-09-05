@@ -17,6 +17,7 @@ export const openModal = (item) => {
     imgModel.src = item.image;
     audioModel.src = item.audio;
     audioModel.play();
+    colorVolume();
 }
 
 // закрываем окно
@@ -38,6 +39,7 @@ const load = (index) => {
     authorModel.textContent = tracks[index].author;
     imgModel.src = tracks[index].image;
     audioModel.src = tracks[index].audio;
+    colorVolume()
 }
 
 prev.addEventListener('click', () => {
@@ -80,12 +82,12 @@ audioModel.addEventListener('timeupdate', () => {
     progress.value = (audioModel.currentTime / audioModel.duration) * 100;
     showTime(progress.value);
 
-    
-    
+
+
     // красим 
     const progressColor = (progress.value / progress.max) * 100;
     progress.style.background = `linear-gradient(to right, var(--violet-color) ${progressColor}%, #ccc ${progressColor}%)`;
-   // console.log(progressColor);
+    // console.log(progressColor);
 });
 
 const time = document.getElementById('time');
@@ -130,8 +132,17 @@ audioModel.volume = volumeControl.value;
 
 volumeControl.addEventListener('input', () => {
     audioModel.volume = volumeControl.value;
+    imgVolume.src = '/assets/images/svg/on_volume.svg';
+    colorVolume();
 });
 
+const colorVolume = () => {
+    const progressColor = (volumeControl.value / volumeControl.max) * 100;
+    volumeControl.style.background = `linear-gradient(to right, #f50 ${progressColor}%, #ccc ${progressColor}%)`;
+    if (progressColor === 0) {
+        imgVolume.src = '/assets/images/svg/off_volume.svg';
+    }
+}
 
 const btnVolume = document.getElementById('volume-dtn');
 const imgVolume = document.getElementById('volume-img');
@@ -141,9 +152,12 @@ btnVolume.onclick = () => {
         imgVolume.src = '/assets/images/svg/off_volume.svg';
         audioModel.volume = 0;
         volumeControl.value = 0;
-    } else {
+        colorVolume();
+    }
+    else {
         imgVolume.src = '/assets/images/svg/on_volume.svg';
         audioModel.volume = 1;
         volumeControl.value = 1;
+        colorVolume();
     }
 };

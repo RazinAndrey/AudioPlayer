@@ -1,14 +1,14 @@
 @import url("/assets/null.css");
 @import url("/assets/fonts.css");
 @import url("/detail/detail.css");
-* {
+/* * {
   outline: 1px solid green !important;
-}
+} */
 :root {
   --background-color: #0f0817;
   --white-color: #fff;
   --violet-color: #7150d0;
-  --violet-color-rgb: rgb(113 , 80 , 208);
+  --violet-color-rgb: rgb(113, 80, 208);
 }
 html,
 body {
