@@ -12,12 +12,15 @@
 }
 html,
 body {
-  font-family: "Urbanist";
+  font-family: "Comfortaa", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
   background-color: var(--background-color);
   color: var(--white-color);
 }
 .wrapper {
   width: 100%;
+  padding: 20px;
 }
 
 .search-input {
@@ -31,6 +34,7 @@ body {
   background-image: url("/assets/images/svg/search.svg");
   background-repeat: no-repeat;
   background-position: left 10px center;
+  margin-bottom: 20px;
 }
 
 .item-song {
@@ -39,15 +43,25 @@ body {
   gap: 10px;
   flex-wrap: wrap;
   cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.06);
+  padding: 10px;
+  border-radius: 10px;
 }
 
 .title-song {
-  margin: 0px 0px 10px 0px;
+  margin: 0 0 10px 0;
+  font-size: 18px;
+}
+
+.author-song {
+  font-size: 14px;
+  color: #ccc;
 }
 
 .img-song {
   width: 60px;
   height: 60px;
+  border-radius: 10px;
 }
 
 .btns {
@@ -55,4 +69,5 @@ body {
   justify-content: flex-end;
   flex-wrap: wrap;
   gap: 10px;
+  margin-bottom: 10px;
 }

@@ -43,7 +43,7 @@ prev.onclick = () => {
     openModal(currentIndex);
 }
 
-next.onclick = () =>  {
+next.onclick = () => {
     currentIndex = (currentIndex + 1) % tracks.length;
     openModal(currentIndex);
 }
@@ -86,9 +86,9 @@ const colorProgress = () => {
     progress.style.background = `linear-gradient(to right, var(--violet-color) ${progressColor}%, #ccc ${progressColor}%`;
     const number = Math.floor(progressColor);
     if (number === 99) {
-        imgPlayOrStop.src = '/assets/images/svg/play.svg';
-        audioModel.pause();
-    }else{
+        // imgPlayOrStop.src = '/assets/images/svg/play.svg';
+        // audioModel.pause();
+    } else {
         // playOrStop(audioModel, imgPlayOrStop)
     }
 }

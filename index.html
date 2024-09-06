@@ -19,17 +19,17 @@
   </head>
 
   <body>
-  
     <div class="wrapper">
-
       <div id="audio-player"></div>
       <script>
-        fetch('detail/detail.html')
-          .then(response => response.text())
-          .then(html => document.getElementById('audio-player').innerHTML = html)
-          .catch(error => console.error('Ошибка:', error));
+        fetch("detail/detail.html")
+          .then((response) => response.text())
+          .then(
+            (html) => (document.getElementById("audio-player").innerHTML = html)
+          )
+          .catch((error) => console.error("Ошибка:", error));
       </script>
-      
+
       <div>
         <input
           type="text"
@@ -40,19 +40,42 @@
       </div>
 
       <input
+        style="display: none"
         type="text"
         id="new-song"
       />
-      <button id="btn-add-song">Add</button>
+      <button
+        id="btn-add-song"
+        style="display: none"
+      >
+        Add
+      </button>
 
-      <div id="songs-list"></div>
-      
+      <div id="songs-list">
+        <div id="item-song">
+          <div>
+            <img
+              src="/assets/images/png/picture.png"
+              alt="#"
+            />
+          </div>
+          <div>
+            <div>Песня</div>
+            <div>Автор</div>
+          </div>
+        </div>
+        <div>
+          <button>
+
+          </button>
+          <button></button>
+        </div>
+      </div>
     </div>
 
     <script
       type="module"
       src="./main.js"
     ></script>
-
   </body>
 </html>
