@@ -85,12 +85,6 @@ const colorProgress = () => {
     const progressColor = (progress.value / progress.max) * 100;
     progress.style.background = `linear-gradient(to right, var(--violet-color) ${progressColor}%, #ccc ${progressColor}%`;
     const number = Math.floor(progressColor);
-    if (number === 99) {
-        // imgPlayOrStop.src = '/assets/images/svg/play.svg';
-        // audioModel.pause();
-    } else {
-        // playOrStop(audioModel, imgPlayOrStop)
-    }
 }
 
 // время

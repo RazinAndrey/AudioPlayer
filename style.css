@@ -9,6 +9,7 @@
   --white-color: #fff;
   --violet-color: #7150d0;
   --violet-color-rgb: rgb(113, 80, 208);
+  --background-color-rgb: rgb(255, 255, 255, 0.06);
 }
 html,
 body {
@@ -18,14 +19,18 @@ body {
   background-color: var(--background-color);
   color: var(--white-color);
 }
+
 .wrapper {
   width: 100%;
   padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .search-input {
   padding: 15px 20px 15px 45px;
-  background-color: rgba(255, 255, 255, 0.06);
+  background-color: var(--background-color-rgb);
   width: 100%;
   border-radius: 12px;
   font-size: 16px;
@@ -34,8 +39,39 @@ body {
   background-image: url("/assets/images/svg/search.svg");
   background-repeat: no-repeat;
   background-position: left 10px center;
-  margin-bottom: 20px;
 }
+.block-filter{
+  display: flex;
+  justify-content: space-between;
+  gap: 5px;
+}
+.block-btns-loved-and-all{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+.btn-loved, .btn-all, .length-data{
+  color: var(--white-color);
+  background-color: var(--background-color-rgb);
+  padding: 10px;
+  font-size: 14px;
+  border-radius: 10px;
+}
+
+.length-data{
+  align-self: flex-start;
+}
+
+.result-null{
+  display: none;
+  font-size: 14px;
+}
+
+
+
+
+
+
 
 .item-song {
   display: flex;
@@ -43,7 +79,7 @@ body {
   gap: 10px;
   flex-wrap: wrap;
   cursor: pointer;
-  background-color: rgba(255, 255, 255, 0.06);
+  background-color: var(--background-color-rgb);
   padding: 10px;
   border-radius: 10px;
 }
@@ -68,6 +104,41 @@ body {
   display: flex;
   justify-content: flex-end;
   flex-wrap: wrap;
-  gap: 10px;
+  margin-top: 3px;
   margin-bottom: 10px;
+  gap: 5px;
 }
+
+.btn-edit, .btn-delete, .btn-heart{
+  background: none;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.img-edit, .img-delete, .img-heart{
+  width: 100%;
+  height: 100%;
+}
+
+.img-edit{
+  filter: invert(22%) sepia(73%)
+    saturate(6307%) hue-rotate(177deg)
+    brightness(91%) contrast(88%);
+  
+}
+.img-delete{
+  filter: invert(51%) sepia(34%)
+    saturate(1133%) hue-rotate(320deg)
+    brightness(98%) contrast(106%);
+}
+
+.img-heart{
+  filter: invert(75%) sepia(100%)
+    saturate(333%) hue-rotate(288deg)
+    brightness(102%) contrast(103%);
+}
+

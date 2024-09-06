@@ -20,13 +20,18 @@
 
   <body>
     <div class="wrapper">
-      <div id="audio-player"></div>
+      <div id="modal" class="modal"></div>
       <script>
         fetch("detail/detail.html")
           .then((response) => response.text())
-          .then(
-            (html) => (document.getElementById("audio-player").innerHTML = html)
-          )
+          .then((html) => (document.getElementById("modal").innerHTML = html))
+          .catch((error) => console.error("Ошибка:", error));
+      </script>
+      <div id="update" style="display: none;"></div>
+      <script>
+        fetch("/form.html")
+          .then((response) => response.text())
+          .then((html) => (document.getElementById("update").innerHTML = html))
           .catch((error) => console.error("Ошибка:", error));
       </script>
 
@@ -36,9 +41,10 @@
           class="search-input"
           id="search-input"
           placeholder="search"
+          autocomplete="off"
         />
       </div>
-
+      
       <input
         style="display: none"
         type="text"
@@ -51,31 +57,24 @@
         Add
       </button>
 
-      <div id="songs-list">
-        <div id="item-song">
-          <div>
-            <img
-              src="/assets/images/png/picture.png"
-              alt="#"
-            />
-          </div>
-          <div>
-            <div>Песня</div>
-            <div>Автор</div>
-          </div>
+      <div class="block-filter">
+        <div class="block-btns-loved-and-all">
+          <button id="btn-loved" class="btn-loved">Favorites</button>
+          <button id="btn-all" class="btn-all">All</button>
         </div>
-        <div>
-          <button>
-
-          </button>
-          <button></button>
-        </div>
+        <span id="length-data" class="length-data"></span>
       </div>
+    
+      <div id="result-null" class="result-null"></div>
+
+      <div id="songs-list"></div>
     </div>
 
+   
     <script
       type="module"
       src="./main.js"
     ></script>
+
   </body>
 </html>

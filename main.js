@@ -1,9 +1,15 @@
 import { songsData } from "./data/songs.js";
 import { openModal } from "./detail/detail.js";
+import { addLovedSong } from "./loved_list/addLoved.js";
+
+import { deleteSong } from "./crud/delete.js";
+import { editSong } from "./crud/edit.js";
+
+import Filter from "./filter.js";
 
 let songs = songsData;
 
-const renderSongs = (songs) => {
+export const renderSongs = (songs) => {
   const songsList = document.getElementById("songs-list");
   songsList.innerHTML = ''; // Очищаем список перед отрисовкой
   songs.forEach((song, index) => {
@@ -13,7 +19,6 @@ const renderSongs = (songs) => {
 
     // просмотр одной песни
     songItem.onclick = () => openModal(index);
-
 
     const songImg = document.createElement('img');
     songImg.className = 'img-song';
@@ -38,23 +43,52 @@ const renderSongs = (songs) => {
     btns.className = 'btns';
     songsList.appendChild(btns);
 
+    const buttonHeart = document.createElement('button');
+    buttonHeart.className = 'btn-heart';
+    btns.appendChild(buttonHeart);
+
+    const imgHeart = document.createElement('img');
+    if(song.loved){
+      imgHeart.src = '/assets/images/svg/heart_2.svg';
+    }else{
+      imgHeart.src = '/assets/images/svg/heart.svg';
+    }
+    imgHeart.id = 'img-heart';
+    imgHeart.className = 'img-heart';
+    buttonHeart.appendChild(imgHeart);
+
+    buttonHeart.onclick = () => addLovedSong(index);
+
     const buttonEdit = document.createElement('button');
-    buttonEdit.textContent = 'Edit';
     buttonEdit.className = 'btn-edit';
     btns.appendChild(buttonEdit);
 
+    const imgEdit = document.createElement('img');
+    imgEdit.src = '/assets/images/svg/edit.svg';
+    imgEdit.className = 'img-edit';
+    buttonEdit.appendChild(imgEdit);
+
     buttonEdit.onclick = () => editSong(song.id, song.title);
 
-
     const buttonDelete = document.createElement('button');
-    buttonDelete.textContent = 'Delete';
     buttonDelete.className = 'btn-delete';
     btns.appendChild(buttonDelete);
 
+    const imgDelete = document.createElement('img');
+    imgDelete.src = '/assets/images/svg/delete.svg';
+    imgDelete.className = 'img-delete';
+    buttonDelete.appendChild(imgDelete);
+
     buttonDelete.onclick = () => deleteSong(song.id);
+
+    // показать все изначально
+    Filter.showLength(songs);
   });
+
 }
 renderSongs(songs);
+
+
 
 const btnAdd = document.getElementById('btn-add-song');
 btnAdd.addEventListener('click', () => addSong());
@@ -69,33 +103,14 @@ const addSong = () => {
   }
 }
 
-const deleteSong = (id) => {
-  songs = songs.filter(song => song.id !== id);
-  console.log(songs);
-  renderSongs(songs);
-}
+// поиск
+Filter.searchInput.addEventListener('input', () => Filter.searchSongs(songs));
 
-const editSong = (id, title) => {
-  const song = songs.findIndex(song => song.id === id);
+// показать понравившиеся
+Filter.btnLoved.onclick = () => Filter.showLoved(songs);
 
-  console.log("Before update: ", songs[song]);
-
-  const newText = prompt('Введите новый текст:', title);
-  songs[song].title = newText;
-
-  console.log("After update: ", songs[song]);
-  renderSongs(songs);
-}
+// показать все по клику
+Filter.btnAll.onclick = () => Filter.showAll(songs);
 
 
-
-const searchInput = document.getElementById('search-input');
-
-const searchSongs = () => {
-  const search = searchInput.value.toLowerCase();
-  const filteredItems = songs.filter(item => item.title.toLowerCase().includes(search));
-  renderSongs(filteredItems);
-}
-
-searchInput.addEventListener('input', () => searchSongs());
 

@@ -5,7 +5,7 @@ export const songsData = [
         author: 'author1',
         image: '/assets/images/png/image1.png',
         audio: '/assets/music/music1.mp3',
-        completed: false
+        loved: false
     },
     {
         id: 2,
@@ -13,7 +13,7 @@ export const songsData = [
         author: 'author2',
         image: '/assets/images/png/image2.png',
         audio: '/assets/music/music2.mp3',
-        completed: false
+        loved: true
     },
     {
         id: 3,
@@ -21,6 +21,6 @@ export const songsData = [
         author: 'author3',
         image: '/assets/images/png/image3.png',
         audio: '/assets/music/music3.mp3',
-        completed: false
+        loved: true
     }
 ];
