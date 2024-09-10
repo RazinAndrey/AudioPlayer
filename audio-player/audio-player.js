@@ -1,16 +1,17 @@
 import { songsData } from "/data/songs.js";
+import { closeWindow } from "../services/closeWindow.js";
 
 const tracks = songsData;
 
-const modal = document.getElementById('modal');
+export const modal = document.getElementById('audio-player');
 
 const titleModel = document.getElementById('title-modal');
 const authorModel = document.getElementById('author-modal');
 const imgModel = document.getElementById('img-modal');
-const audioModel = document.getElementById('audio-modal');
+export const audioModel = document.getElementById('audio-modal');
 
 // открываем окно
-export const openModal = (index) => {
+export const audioPlayer = (index) => {
     modal.style.display = "block";
     titleModel.textContent = tracks[index].title;
     authorModel.textContent = tracks[index].author;
@@ -24,14 +25,10 @@ export const openModal = (index) => {
     colorVolume();
 }
 
-// закрываем окно
-window.onclick = function (event) {
-    if (event.target === modal) {
-        modal.style.display = "none";
-        audioModel.pause();
-        imgPlayOrStop.src = '/assets/images/svg/pause.svg';
-    }
-}
+// закрываем окно 
+window.onclick = (event) => closeWindow(event);
+
+
 
 let currentIndex = 0;
 
@@ -40,7 +37,7 @@ const next = document.getElementById('btn-next');
 
 prev.onclick = () => {
     currentIndex = (currentIndex - 1 + tracks.length) % tracks.length;
-    openModal(currentIndex);
+    openAudioPlayer(currentIndex);
 }
 
 next.onclick = () => {
@@ -48,8 +45,8 @@ next.onclick = () => {
     openModal(currentIndex);
 }
 
-const btnPlayOrStop = document.getElementById('btn-play-or-stop');
-const imgPlayOrStop = document.getElementById('img-play-or-stop');
+ const btnPlayOrStop = document.getElementById('btn-play-or-stop');
+ export const imgPlayOrStop = document.getElementById('img-play-or-stop');
 
 btnPlayOrStop.onclick = () => playOrStop(audioModel, imgPlayOrStop);
 

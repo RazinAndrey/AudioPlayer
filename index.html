@@ -20,60 +20,39 @@
 
   <body>
     <div class="wrapper">
-      <div id="modal" class="modal"></div>
+      <div id="audio-player" class="audio-player"></div>
       <script>
-        fetch("detail/detail.html")
+        fetch("/audio-player/audio-player.html")
           .then((response) => response.text())
-          .then((html) => (document.getElementById("modal").innerHTML = html))
+          .then((html) => (document.getElementById("audio-player").innerHTML = html))
           .catch((error) => console.error("Ошибка:", error));
-      </script>
-      <div id="update" style="display: none;"></div>
+      </script> 
+
+     <div id="audio-form" class="audio-form">
+        <form id="form-content" class="form-content">
+          <input id="title-form" type="text">
+          <input id="audio-form" type="file">
+          <input id="img-form" type="file">
+          <button id="btn-form" type="submit">Add</button>
+        </form>
+      </div>
+     
+      <div id="filter" class="filter"></div>
       <script>
-        fetch("/form.html")
+        fetch("/audio-filter/audio-filter.html")
           .then((response) => response.text())
-          .then((html) => (document.getElementById("update").innerHTML = html))
+          .then((html) => (document.getElementById("filter").innerHTML = html))
           .catch((error) => console.error("Ошибка:", error));
-      </script>
-
-      <div>
-        <input
-          type="text"
-          class="search-input"
-          id="search-input"
-          placeholder="search"
-          autocomplete="off"
-        />
-      </div>
-      
-      <input
-        style="display: none"
-        type="text"
-        id="new-song"
-      />
-      <button
-        id="btn-add-song"
-        style="display: none"
-      >
-        Add
-      </button>
-
-      <div class="block-filter">
-        <div class="block-btns-loved-and-all">
-          <button id="btn-loved" class="btn-loved">Favorites</button>
-          <button id="btn-all" class="btn-all">All</button>
-        </div>
-        <span id="length-data" class="length-data"></span>
-      </div>
-    
-      <div id="result-null" class="result-null"></div>
+      </script> 
 
       <div id="songs-list"></div>
+
     </div>
 
    
     <script
       type="module"
-      src="./main.js"
+      src="./app.js"
     ></script>
 
   </body>

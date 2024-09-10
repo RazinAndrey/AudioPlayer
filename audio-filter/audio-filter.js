@@ -1,4 +1,6 @@
-import { renderSongs } from "./main.js";
+import { renderSongs } from "../audio-list/audio-list.js";
+import { songsData } from "../data/songs.js";
+let songs = songsData; 
 
 class Filter{
 
@@ -9,19 +11,21 @@ class Filter{
         data = data.filter(item => item.title.toLowerCase().includes(search));
         this.showResult(data);
     }
-
+    filterValue = 'all';
     // показать понравившиеся
     static btnLoved = document.getElementById('btn-loved');
     static showLoved = (data) => {
-        data = data.filter(item => item.loved === true)
+        this.filterValue = 'loved';
+        data = data.filter(item => item.loved === true);
         this.showResult(data);
     }
 
     // показать все
     static btnAll = document.getElementById('btn-all');
     static showAll  = (data) => {
+        this.filterValue = 'all';
         this.showResult(data);
-    };
+    }
 
     // результат null
     static resultsNull = document.getElementById('result-null');
@@ -29,20 +33,25 @@ class Filter{
         if (data.length > 0) {
             this.resultsNull.style.display = 'none';
             renderSongs(data);
-            this.showLength(data);
         } else {
             renderSongs(data);
             this.resultsNull.style.display = 'block';
             this.resultsNull.textContent = 'Результатов не найдено.';
-            this.showLength(data);
+            
         }
     }
 
-    // кол-во объектов
-    static lengthSongs = document.getElementById('length-data');
-    static showLength(data) {
-        this.lengthSongs.textContent = data.length;
+    // добавить в избранные
+    static changeLovedSong = (id) => {
+        const index = songs.findIndex((song) => song.id === id);
+        songs[index].loved = !songs[index].loved;
+        if(this.filterValue === 'loved'){
+            this.showLoved(songs);
+            return;
+        }
+        renderSongs(songs);
     }
+
 
 }
 

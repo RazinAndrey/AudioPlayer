@@ -1,6 +1,8 @@
 @import url("/assets/null.css");
 @import url("/assets/fonts.css");
-@import url("/detail/detail.css");
+@import url("/audio-filter/audio-filter.css");
+@import url("/audio-list/audio-list.css");
+
 /* * {
   outline: 1px solid green !important;
 } */
@@ -11,6 +13,7 @@
   --violet-color-rgb: rgb(113, 80, 208);
   --background-color-rgb: rgb(255, 255, 255, 0.06);
 }
+
 html,
 body {
   font-family: "Comfortaa", sans-serif;
@@ -28,117 +31,35 @@ body {
   gap: 10px;
 }
 
-.search-input {
-  padding: 15px 20px 15px 45px;
-  background-color: var(--background-color-rgb);
-  width: 100%;
-  border-radius: 12px;
-  font-size: 16px;
-  color: var(--white);
-  font-weight: 300;
-  background-image: url("/assets/images/svg/search.svg");
-  background-repeat: no-repeat;
-  background-position: left 10px center;
-}
-.block-filter{
-  display: flex;
-  justify-content: space-between;
-  gap: 5px;
-}
-.block-btns-loved-and-all{
-  display: flex;
-  flex-wrap: wrap;
-  gap: 5px;
-}
-.btn-loved, .btn-all, .length-data{
-  color: var(--white-color);
-  background-color: var(--background-color-rgb);
-  padding: 10px;
-  font-size: 14px;
-  border-radius: 10px;
-}
-
-.length-data{
-  align-self: flex-start;
-}
-
-.result-null{
-  display: none;
-  font-size: 14px;
-}
-
-
-
-
-
-
-
-.item-song {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  flex-wrap: wrap;
-  cursor: pointer;
-  background-color: var(--background-color-rgb);
-  padding: 10px;
-  border-radius: 10px;
-}
-
-.title-song {
-  margin: 0 0 10px 0;
-  font-size: 18px;
-}
-
-.author-song {
-  font-size: 14px;
-  color: #ccc;
-}
-
-.img-song {
-  width: 60px;
-  height: 60px;
-  border-radius: 10px;
-}
-
-.btns {
-  display: flex;
-  justify-content: flex-end;
-  flex-wrap: wrap;
-  margin-top: 3px;
-  margin-bottom: 10px;
-  gap: 5px;
-}
-
-.btn-edit, .btn-delete, .btn-heart{
-  background: none;
-  width: 20px;
-  height: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-}
-
-.img-edit, .img-delete, .img-heart{
+.audio-player, .audio-form {
+  display: none; 
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
   width: 100%;
   height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
 }
 
-.img-edit{
-  filter: invert(22%) sepia(73%)
-    saturate(6307%) hue-rotate(177deg)
-    brightness(91%) contrast(88%);
-  
-}
-.img-delete{
-  filter: invert(51%) sepia(34%)
-    saturate(1133%) hue-rotate(320deg)
-    brightness(98%) contrast(106%);
+.audio-player-content, .form-content{
+  background-color: var(--background-color);
+  border: 1px solid #888;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 400px;
+  gap: 20px;
+  border-radius: 15px;
+  padding: 20px;
 }
 
-.img-heart{
-  filter: invert(75%) sepia(100%)
-    saturate(333%) hue-rotate(288deg)
-    brightness(102%) contrast(103%);
-}
+
+
+
+
+
+
+
 
