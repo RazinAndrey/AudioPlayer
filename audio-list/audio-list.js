@@ -15,8 +15,7 @@ export const renderSongs = (songs) => {
     songsList.appendChild(songItem);
 
     // просмотр одной песни
-    songItem.onclick = (event) => {
-      // openWindow(event);
+    songItem.onclick = () => {
       audioPlayer(index);
     }
 
@@ -80,7 +79,7 @@ export const renderSongs = (songs) => {
     imgDelete.className = 'img-delete';
     buttonDelete.appendChild(imgDelete);
 
-    buttonDelete.onclick = () => AudioManager.deleteSong(song.id);
+    buttonDelete.onclick = () => Filter.deleteSong(song.id);
   });
 
 }

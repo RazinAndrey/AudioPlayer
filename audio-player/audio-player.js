@@ -10,7 +10,7 @@ const authorModel = document.getElementById('author-modal');
 const imgModel = document.getElementById('img-modal');
 export const audioModel = document.getElementById('audio-modal');
 
-// открываем окно
+// открываем окно 
 export const audioPlayer = (index) => {
     modal.style.display = "block";
     titleModel.textContent = tracks[index].title;
@@ -37,12 +37,12 @@ const next = document.getElementById('btn-next');
 
 prev.onclick = () => {
     currentIndex = (currentIndex - 1 + tracks.length) % tracks.length;
-    openAudioPlayer(currentIndex);
+    audioPlayer(currentIndex);
 }
 
 next.onclick = () => {
     currentIndex = (currentIndex + 1) % tracks.length;
-    openModal(currentIndex);
+    audioPlayer(currentIndex);
 }
 
  const btnPlayOrStop = document.getElementById('btn-play-or-stop');

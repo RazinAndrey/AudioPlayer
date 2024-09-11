@@ -109,7 +109,6 @@
 
 
 
-import { renderSongs } from "./audio-list/audio-list.js";
 import { songsData } from "./data/songs.js";
 import Filter from "./audio-filter/audio-filter.js";
 
@@ -123,12 +122,17 @@ btnFormAdd.onclick = () => {
 };
 
 // поиск
-Filter.searchInput.addEventListener('input', () => Filter.searchSongs(songs));
+CustomSelect.searchInput.addEventListener('input', () => CustomSelect.searchSongs(songs));
 
 // показать понравившиеся
-Filter.btnLoved.onclick = () => Filter.showLoved(songs);
+Filter.btnLoved.onclick = () => {
+    // Filter.activeBtn(this); 
+    Filter.showLoved(songs)
+};
 
-// показать все по клику
-Filter.btnAll.onclick = () => Filter.showAll(songs);
+// CustomSelect.
 
-renderSongs(songsData);
+Filter.showAll(songs);
+
+import CustomSelect from "./services/custom-select.js";
+CustomSelect.showCustomSelect();

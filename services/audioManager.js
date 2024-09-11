@@ -1,9 +1,11 @@
 import { renderSongs } from "../audio-list/audio-list.js";
+
 import { songsData } from "../data/songs.js";
 
 let songs = songsData;
 
 class AudioManager {
+
   // добавление
   static addSong = () => {
     const songInput = document.getElementById('new-song');
@@ -15,10 +17,10 @@ class AudioManager {
         renderSongs(songs);
         songInput.value = '';
       }
-    }
+  }
 
-    // редактирование
-    static editSong = (id, title) => {
+  // редактирование
+  static editSong = (id, title) => {
       form.style.display = 'block';
     
       const formTitle = document.getElementById('form-title');
@@ -33,15 +35,8 @@ class AudioManager {
       
       console.log("After update: ", songs[index ]);
       renderSongs(songs);
-    }
-    
-    // удаление
-    static deleteSong = (id) => {
-      songs = songs.filter(song => song.id !== id);
-      renderSongs(songs);
-    }
-  
-   
+  }
+ 
 }
 
 export default AudioManager;

@@ -1,28 +1,34 @@
 import { renderSongs } from "../audio-list/audio-list.js";
+
 import { songsData } from "../data/songs.js";
+
+
+
 let songs = songsData; 
 
 class Filter{
 
-    // поиск
-    static searchInput = document.getElementById('search-input');
-    static searchSongs = (data) => {
-        const search = this.searchInput.value.toLowerCase();
-        data = data.filter(item => item.title.toLowerCase().includes(search));
-        this.showResult(data);
-    }
-    filterValue = 'all';
+   
+
+    static filterValue = 'all';
+
     // показать понравившиеся
     static btnLoved = document.getElementById('btn-loved');
     static showLoved = (data) => {
+        
+        this.activeBtn(this.btnLoved);
+
         this.filterValue = 'loved';
+
         data = data.filter(item => item.loved === true);
+
         this.showResult(data);
     }
 
     // показать все
-    static btnAll = document.getElementById('btn-all');
-    static showAll  = (data) => {
+
+    static showAll = (data) => {
+
         this.filterValue = 'all';
         this.showResult(data);
     }
@@ -44,7 +50,22 @@ class Filter{
     // добавить в избранные
     static changeLovedSong = (id) => {
         const index = songs.findIndex((song) => song.id === id);
+        
         songs[index].loved = !songs[index].loved;
+
+        this.AnotherOrLoved();
+    }
+
+    // удаление
+    static deleteSong = (id) => {
+      const index = songs.findIndex((song) => song.id === id);
+      songs.splice(index, 1);
+
+      this.AllOrLoved();
+    }
+
+    // показываем нужные элементы списка 
+    static AnotherOrLoved = () => {
         if(this.filterValue === 'loved'){
             this.showLoved(songs);
             return;
@@ -53,6 +74,16 @@ class Filter{
     }
 
 
+    // активная кнопка
+    static activeBtn(button){
+        const buttons = document.querySelectorAll('.btn-filter');
+        buttons.forEach(btn => {
+            btn.classList.remove('active');
+        });
+        
+        // Добавляем класс active к нажатой кнопке
+        button.classList.add('active');
+    }
 }
 
 export default Filter;
