@@ -35,6 +35,8 @@ class AudioManager {
       
       console.log("After update: ", songs[index ]);
       renderSongs(songs);
+    
+   
   }
  
 }

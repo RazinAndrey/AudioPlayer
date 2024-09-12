@@ -8,13 +8,15 @@ let songs = songsData;
 
 class Filter{
 
-   
+    static searchInput = document.getElementById('search-input');
 
     static filterValue = 'all';
 
     // показать понравившиеся
     static btnLoved = document.getElementById('btn-loved');
     static showLoved = (data) => {
+
+        this.searchInput.value = '';
         
         this.activeBtn(this.btnLoved);
 
@@ -26,9 +28,7 @@ class Filter{
     }
 
     // показать все
-
     static showAll = (data) => {
-
         this.filterValue = 'all';
         this.showResult(data);
     }
@@ -43,7 +43,6 @@ class Filter{
             renderSongs(data);
             this.resultsNull.style.display = 'block';
             this.resultsNull.textContent = 'Результатов не найдено.';
-            
         }
     }
 
@@ -61,7 +60,7 @@ class Filter{
       const index = songs.findIndex((song) => song.id === id);
       songs.splice(index, 1);
 
-      this.AllOrLoved();
+      this.AnotherOrLoved();
     }
 
     // показываем нужные элементы списка 

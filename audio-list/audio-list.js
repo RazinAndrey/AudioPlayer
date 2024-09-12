@@ -1,6 +1,7 @@
 import Filter from "../audio-filter/audio-filter.js";
-import AudioManager from "../services/audioManager.js";
+
 import { audioPlayer } from "../audio-player/audio-player.js";
+// import { editSong } from "../app.js"
 
 
 export const renderSongs = (songs) => {
@@ -68,7 +69,7 @@ export const renderSongs = (songs) => {
     imgEdit.className = 'img-edit';
     buttonEdit.appendChild(imgEdit);
 
-    buttonEdit.onclick = () => editSong(song.id, song.title);
+    // buttonEdit.onclick = () => editSong(index);
 
     const buttonDelete = document.createElement('button');
     buttonDelete.className = 'btn-delete';

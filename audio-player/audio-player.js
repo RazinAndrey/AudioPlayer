@@ -1,9 +1,11 @@
 import { songsData } from "/data/songs.js";
-import { closeWindow } from "../services/closeWindow.js";
+// import { closeWindow } from "../services/closeWindow.js";
 
 const tracks = songsData;
 
 export const modal = document.getElementById('audio-player');
+
+
 
 const titleModel = document.getElementById('title-modal');
 const authorModel = document.getElementById('author-modal');
@@ -25,8 +27,15 @@ export const audioPlayer = (index) => {
     colorVolume();
 }
 
-// закрываем окно 
-window.onclick = (event) => closeWindow(event);
+// // закрываем окно 
+// // Закрытие модального окна при клике вне его
+// window.onclick = function(event) {
+//     if (event.target === modal) {
+//         modal.style.display = "none";
+//         audioModel.pause();
+//         imgPlayOrStop.src = '/assets/images/svg/pause.svg';
+//     }
+// }
 
 
 
