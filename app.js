@@ -1,165 +1,58 @@
-import { genresData, songsData } from "./data/songs.js";
-import Filter from "./audio-filter/audio-filter.js";
-import CustomSelect from "./services/custom-select.js";
+import { songsData } from "./data/songs.js";
+import Filter from "./services/filter-manager.js";
+import SongsManager from "./services/songs-manager.js";
+import GenresManager from "./services/genres-manager.js";
+import MediaManager from "./services/media-manager.js";
 
-let genres = genresData;
 let songs = songsData;
 
+// показать всех изначально
+Filter.showAll(songs);
+// показать все по клику
+Filter.btnAll.onclick = () => Filter.showAll(songs);
 // поиск
-CustomSelect.searchInput.addEventListener('input',
-    () => CustomSelect.searchSongs(songs)
-);
-
+Filter.searchInput.addEventListener('input',() => Filter.searchSongs(songs));
 // показать понравившиеся
-Filter.btnLoved.onclick = () => {
-    Filter.showLoved(songs);
-};
+Filter.btnLoved.onclick = () => Filter.showLoved(songs);
 
-// показать всё
-Filter.showResult(songs);
 
 // показать жанры
-CustomSelect.showCustomSelect();
-
-
-const form = document.getElementById('form');
-const overlay = document.getElementById('overlay');
-const openModalButton = document.getElementById('open-form');
-const closeModalButton = document.getElementById('close-form');
-
-// Открытие модального окна
- openModalButton.onclick = function() {
+GenresManager.showGenres();
+// предыдущий показ жанров
+GenresManager.prevBtn.onclick = () => GenresManager.prevMethod();
+// следующий показ жанров
+GenresManager.nextBtn.onclick = () => GenresManager.nextMethod();
+// test
+GenresManager.colorBtnActGenre();
+// открытие модального окна
+SongsManager.openModalButton.onclick = () => {
     form.style.display = 'flex';
     overlay.style.display = 'block';
 };
-
-// Закрытие модального окна по клику на кнопку
-closeModalButton.onclick = function() {
+// закрытие модального окна по клику на кнопку
+SongsManager.closeModalButton.onclick = () => {
     form.style.display = 'none';
     overlay.style.display = 'none';
 };
-
-const imageInput = document.getElementById('image-input');
-const imagePreview = document.getElementById('image-preview');
-
-// превью картинки
-imageInput.addEventListener('change', function() {
-    const file = this.files[0];
-    if (file) {
-        const reader = new FileReader();
-        reader.onload = function(event) {
-            imagePreview.innerHTML = '<img src="' + event.target.result + '" alt="Preview">';
-        };
-        reader.readAsDataURL(file);
-    } else {
-        imagePreview.innerHTML = '<span>Предпросмотр</span>';
-    }
-});
+// предпоказ
+SongsManager.Preview();
 
 
-const audioInput = document.getElementById('audio-input');
-const audioPreview = document.getElementById('audio-preview');
+// закрыть плеер
+window.onclick = (event) => MediaManager.closeAudioPlayer(event); 
+// переключение песни
+MediaManager.prevBtnModal.onclick = () => MediaManager.prevModal();
+MediaManager.nextBtnModal.onclick = () => MediaManager.nextModal();
+// поставить на паузу
+MediaManager.btnPlayOrStop.onclick = () => MediaManager.playOrStop();
+// прогресс инпута у аудио
+MediaManager.audioModel.addEventListener('timeupdate', () => MediaManager.moveProgres());
+// прогресс самого аудио
+MediaManager.progress.addEventListener('input', () => MediaManager.moveAudo());
+// начать сначала
+MediaManager.restart.onclick = () => MediaManager.restartAudio();
+// громкость
+MediaManager.volumeControl.addEventListener('input', () => MediaManager.volume()); 
+// переключатель громкости
+MediaManager.btnVolume.onclick = () => MediaManager.toggleVolume();
 
-// превью музыки
-audioInput.addEventListener('change', function() {
-    const file = this.files[0];
-    if (file) {
-        audioPreview.textContent = file.name;
-    
-    } else {
-        audioPreview.innerHTML = '<span>Предпросмотр</span>';
-    }
-});
-
-
-const selectElement = document.getElementById('genre-form');
-
-// жанры
-genres.forEach(genre => {
-    const option = document.createElement('option');
-    option.value = genre;
-    option.textContent = genre;
-    option.className = 'option'
-    selectElement.appendChild(option);
-});
-
-
-// добаление
-document.getElementById('form').addEventListener('submit', function(event) {
-    const title = document.getElementById('title-form').value;
-    const author = document.getElementById('author-form').value;
-    const musicFile = document.getElementById('audio-input').files[0];
-    const imageFile = document.getElementById('image-input').files[0];
-
-    event.preventDefault();
-
-    if (musicFile && imageFile) {
-        const readerMusic = new FileReader();
-        const readerImage = new FileReader();
-        let musicObj = {
-            title: title,
-            author: author,
-            audio: '',
-            image: ''
-        };
-        readerMusic.onload = function(e) {
-            musicObj.audio = e.target.result;
-        };
-
-        readerMusic.readAsDataURL(musicFile);
-        
-        readerImage.onload = function(e) {
-            musicObj.image = e.target.result;
-            songs.push(musicObj);
-            Filter.showAll(songs);
-        };
-
-        readerImage.readAsDataURL(imageFile);
-
-        document.getElementById('form').reset();
-        form.style.display = 'none';
-        overlay.style.display = 'none';
-
-        imagePreview.innerHTML = '';
-        audioPreview.innerHTML= '';
-    }
-});
-
-
-
-
-import { modal, audioModel, imgPlayOrStop } from "./audio-player/audio-player.js";
-
-
-// закрываем окно 
-// Закрытие модального окна при клике вне его
-window.onclick = function(event) {
-    if (event.target === modal) {
-        modal.style.display = "none";
-        audioModel.pause();
-        imgPlayOrStop.src = '/assets/images/svg/pause.svg';
-    }
-}
-
-
-
-// Функция для редактирования музыки
-// export function editSong(id) {
-    // const form = document.getElementById('form');
-    // form.style.display = 'flex';
-    // overlay.style.display = 'block';
-    
-    // title.value = musicArray[index].name;
-    // document.getElementById('imageUrl').value = musicArray[index].imageUrl;
-
-    // // Удаляем старый обработчик и добавляем новый с указанием индекса
-   
-    // form.onsubmit = function(event) {
-    //     event.preventDefault();
-    //     musicArray[index].name = document.getElementById('musicName').value;
-    //     musicArray[index].imageUrl = document.getElementById('imageUrl').value;
-    //     showAll(songs);
-    //     form.reset(); // Сбрасываем форму
-    //     form.onsubmit = null; // Удаляем обработчик, чтобы не дублировать
-    // };
-// }

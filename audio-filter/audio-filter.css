@@ -71,38 +71,19 @@
 
 .active{
     background-color: var(--pink-color);
+    opacity: 0.9; 
 }
 
-.select-items{
-    margin-top: 120px;
-    position: absolute;
-    padding: 5px;
+.genres-items-block,
+.genres-items {
     display: flex;
-    flex-direction: column;
-    cursor: pointer;
     gap: 5px;
-    border-radius: 5px;
-    z-index: 100;
-    height: 300px;
-    width: 300px;
-    overflow-y: scroll;
-    backdrop-filter: blur(10px);
-    top: 0;
-    left: 0;
-}
-.select-items::-webkit-scrollbar {
-    width: 3px;
-}
-.select-items::-webkit-scrollbar-thumb {
-    background: var(--pink-color);
-    border-radius: 5px;
-
 }
 
-.select-items .btn-filter:hover {
-    background-color: var(--pink-color)
-}
 
-.hiden {
-    display: none;
+.prev-btn:disabled, .next-btn:disabled {
+    background-color: var(--background-color-rgb);
+    color: #666; 
+    cursor: not-allowed; 
+    opacity: 0.6; 
 }

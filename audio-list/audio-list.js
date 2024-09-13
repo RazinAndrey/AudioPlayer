@@ -1,7 +1,5 @@
-import Filter from "../audio-filter/audio-filter.js";
-
-import { audioPlayer } from "../audio-player/audio-player.js";
-// import { editSong } from "../app.js"
+import Filter from "../services/filter-manager.js";
+import MediaControl from "../services/media-manager.js"; 
 
 
 export const renderSongs = (songs) => {
@@ -16,9 +14,7 @@ export const renderSongs = (songs) => {
     songsList.appendChild(songItem);
 
     // просмотр одной песни
-    songItem.onclick = () => {
-      audioPlayer(index);
-    }
+    songItem.onclick = () => MediaControl.showAudioPlayer(index);
 
     const songImg = document.createElement('img');
     songImg.className = 'img-song';

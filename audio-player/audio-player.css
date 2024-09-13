@@ -25,7 +25,7 @@
     border-radius: 10px;
 }
 
-.progress {
+.progress, .volume {
   -webkit-appearance: none;
   appearance: none;
   width: 100%;
@@ -34,7 +34,8 @@
   border-radius: 15px;
   height: 3px;
 }
-.progress::-webkit-slider-thumb {
+.progress::-webkit-slider-thumb,
+.volume::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
   height: 15px;
@@ -44,7 +45,8 @@
   border: none;
   transition: 0.2s ease-in-out;
 }
-.progress::-moz-range-thumb {
+.progress::-moz-range-thumb,
+.volume::-moz-range-thumb  {
   height: 15px;
   width: 15px;
   background-color: var(--violet-color);
@@ -52,16 +54,20 @@
   border: none;
   transition: 0.2s ease-in-out;
 }
-.progress::-webkit-slider-thumb:hover {
+.progress::-webkit-slider-thumb:hover,
+.volume::-webkit-slider-thumb:hover {
   box-shadow: 0 0 0 10px rgb(113, 80, 208, 0.1);
 }
-.progress:active::-webkit-slider-thumb {
+.progress:active::-webkit-slider-thumb,
+.volume:active::-webkit-slider-thumb {
   box-shadow: 0 0 0 13px rgb(113, 80, 208, 0.2);
 }
-.progress:-moz-range-thumb:hover {
+.progress:-moz-range-thumb:hover,
+.volume:-moz-range-thumb:hover{
   box-shadow: 0 0 0 10px rgb(113, 80, 208, 0.1);
 }
-.progress:active::-moz-range-thumb {
+.progress:active::-moz-range-thumb,
+.volume:active::-moz-range-thumb {
   box-shadow: 0 0 0 13px rgb(113, 80, 208, 0.2);
 }
 
@@ -134,48 +140,6 @@
   gap: 5px;
   align-self: flex-end;
   align-items: center;
-}
-
-.volume {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 100%;
-  cursor: pointer;
-  outline: none;
-  border-radius: 15px;
-  height: 3px;
-  background: #ccc;
-  /* display: none; */
-}
-.volume::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  height: 15px;
-  width: 15px;
-  background-color: #f50;
-  border-radius: 50%;
-  border: none;
-  transition: 0.2s ease-in-out;
-}
-.volume::-moz-range-thumb {
-  height: 15px;
-  width: 15px;
-  background-color: #f50;
-  border-radius: 50%;
-  border: none;
-  transition: 0.2s ease-in-out;
-}
-.volume::-webkit-slider-thumb:hover {
-  box-shadow: 0 0 0 10px rgb(255, 85, 0, 0.1);
-}
-.volume:active::-webkit-slider-thumb {
-  box-shadow: 0 0 0 13px rgb(255, 85, 0, 0.2);
-}
-.volume:-moz-range-thumb:hover {
-  box-shadow: 0 0 0 10px rgb(255, 85, 0, 0.1);
-}
-.volume:active::-moz-range-thumb {
-  box-shadow: 0 0 0 13px rgb(255, 85, 0, 0.2);
 }
 
 #title-modal{

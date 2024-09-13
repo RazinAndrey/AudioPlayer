@@ -2,35 +2,37 @@ import { renderSongs } from "../audio-list/audio-list.js";
 
 import { songsData } from "../data/songs.js";
 
-
-
 let songs = songsData; 
 
 class Filter{
 
+    // поиск
     static searchInput = document.getElementById('search-input');
+    static searchSongs = (data) => {
+        const search = this.searchInput.value.toLowerCase();
+        data = data.filter(item => item.title.toLowerCase().includes(search));
+        this.showResult(data);
+        this.activeBtn(this.btnAll);
+    }
 
     static filterValue = 'all';
 
     // показать понравившиеся
     static btnLoved = document.getElementById('btn-loved');
-    static showLoved = (data) => {
-
+    static showLoved(data){
         this.searchInput.value = '';
-        
-        this.activeBtn(this.btnLoved);
-
         this.filterValue = 'loved';
-
         data = data.filter(item => item.loved === true);
-
         this.showResult(data);
+        this.activeBtn(this.btnLoved);
     }
 
     // показать все
-    static showAll = (data) => {
+    static btnAll = document.getElementById('btn-all');
+    static showAll(data){
         this.filterValue = 'all';
         this.showResult(data);
+        this.activeBtn(this.btnAll);
     }
 
     // результат null
@@ -48,10 +50,8 @@ class Filter{
 
     // добавить в избранные
     static changeLovedSong = (id) => {
-        const index = songs.findIndex((song) => song.id === id);
-        
+        const index = songs.findIndex((item) => item.id === id);
         songs[index].loved = !songs[index].loved;
-
         this.AnotherOrLoved();
     }
 
@@ -59,7 +59,6 @@ class Filter{
     static deleteSong = (id) => {
       const index = songs.findIndex((song) => song.id === id);
       songs.splice(index, 1);
-
       this.AnotherOrLoved();
     }
 
@@ -72,15 +71,13 @@ class Filter{
         renderSongs(songs);
     }
 
-
     // активная кнопка
     static activeBtn(button){
         const buttons = document.querySelectorAll('.btn-filter');
         buttons.forEach(btn => {
             btn.classList.remove('active');
         });
-        
-        // Добавляем класс active к нажатой кнопке
+        // добавляем класс active к нажатой кнопке
         button.classList.add('active');
     }
 }
