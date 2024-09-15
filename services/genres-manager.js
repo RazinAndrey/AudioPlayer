@@ -4,7 +4,7 @@ import Filter from "./filter-manager.js"
 let songs = songsData;
 let genres = genresData;
 
-class GenresManager extends Filter{
+class GenresManager extends Filter {
     static currentIndex = 0;
     static itemsPerPage = 3; // количество элементов для отображения
 
@@ -13,7 +13,7 @@ class GenresManager extends Filter{
     static itemContainer = document.getElementById('genres-items');
 
     static showGenres() {
-       
+
         this.itemContainer.innerHTML = ''; // очищаем контейнер
 
         // рассчитываем начинающий и конечный индексы
@@ -22,21 +22,20 @@ class GenresManager extends Filter{
 
         // показываем нужные элементы
         const itemsToShow = genres.slice(startIndex, endIndex);
-        itemsToShow.forEach((genre, index) => {
+        itemsToShow.forEach((genre) => {
             const btnGenre = document.createElement('button');
-            btnGenre.className = 'filter-btn';
+            btnGenre.className = 'btn-filter';
             btnGenre.textContent = genre;
             this.itemContainer.appendChild(btnGenre);
 
-           
+
             btnGenre.onclick = () => {
                 const results = this.searchGenres(genre);
                 this.showResult(results);
-                this.colorBtnActGenre(index);
                 btnGenre.classList.add('active');
-                // this.activeBtn(btnGenre);
+                this.activeBtn(btnGenre);
             };
-           
+
         });
 
         // управление видимостью кнопок
@@ -47,27 +46,8 @@ class GenresManager extends Filter{
         this.value = null; // Изначально значение равно null
     }
 
-    // Метод для установки значения
-    set value(value) {
-        this.value = value;
-    }
-
-    // Метод для получения значения
-    get value() {
-        return this.value;
-    }
-    static colorBtnActGenre(index) {
-        console.log(`Кнопка нажата. Текущее значение:  ${index}`);
-
-        const buttons = document.querySelectorAll('.color-button');
-        if (index >= 0 && index < buttons.length) {
-            buttons[index].style.backgroundColor = 'red';
-        } else {
-            console.log('Индекс вне диапазона');
-        }
-    }
     // вперед
-    static prevMethod(){
+    static prevMethod() {
         if (this.currentIndex > 0) {
             this.currentIndex--;
             this.showGenres();
@@ -75,17 +55,16 @@ class GenresManager extends Filter{
     };
 
     // назад
-    static nextMethod(){
+    static nextMethod() {
         if ((this.currentIndex + 1) * this.itemsPerPage < genres.length) {
             this.currentIndex++;
             this.showGenres();
-            // this.activeBtn(this.nextBtn);
         }
     }
 
     // поиск по жанру
-    static searchGenres(value){ 
-        return songs.filter(song => song.genre === value); 
+    static searchGenres(value) {
+        return songs.filter(song => song.genre === value);
     }
 }
 

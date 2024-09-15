@@ -1,11 +1,11 @@
-import Filter from "../services/filter-manager.js";
-import MediaControl from "../services/media-manager.js"; 
+import Filter from "../../services/filter-manager.js";
+import MediaManager from "../../services/media-manager.js";
 
 
 export const renderSongs = (songs) => {
 
   const songsList = document.getElementById("songs-list");
-  songsList.innerHTML = ''; 
+  songsList.innerHTML = '';
 
   songs.forEach((song, index) => {
     const songItem = document.createElement('div');
@@ -14,7 +14,7 @@ export const renderSongs = (songs) => {
     songsList.appendChild(songItem);
 
     // просмотр одной песни
-    songItem.onclick = () => MediaControl.showAudioPlayer(index);
+    songItem.onclick = () => MediaManager.showAudioPlayer(index);
 
     const songImg = document.createElement('img');
     songImg.className = 'img-song';
@@ -22,7 +22,7 @@ export const renderSongs = (songs) => {
     songItem.appendChild(songImg);
 
     const songTitleAndAuthor = document.createElement('div');
-    songTitleAndAuthor.className = 'title-and-author-song';
+    songTitleAndAuthor.className = 'block-text-song';
     songItem.appendChild(songTitleAndAuthor);
 
     const songTitle = document.createElement('div');
@@ -35,6 +35,11 @@ export const renderSongs = (songs) => {
     songAuthor.textContent = song.author;
     songTitleAndAuthor.appendChild(songAuthor);
 
+    const songGenre = document.createElement('div');
+    songGenre.className = 'genre-song';
+    songGenre.textContent = song.genre;
+    songTitleAndAuthor.appendChild(songGenre);
+
     const btns = document.createElement('div');
     btns.className = 'btns';
     songsList.appendChild(btns);
@@ -44,9 +49,9 @@ export const renderSongs = (songs) => {
     btns.appendChild(buttonHeart);
 
     const imgHeart = document.createElement('img');
-    if(song.loved){
+    if (song.loved) {
       imgHeart.src = '/assets/images/svg/heart_2.svg';
-    }else{
+    } else {
       imgHeart.src = '/assets/images/svg/heart.svg';
     }
     imgHeart.id = 'img-heart';

@@ -1,0 +1,37 @@
+@import url("reset.css");
+@import url("audio-player.css");
+@import url("filter.css");
+@import url("songs.css");
+@import url("form.css");
+
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
+
+/* * {
+  outline: 1px solid green !important;
+} */
+:root {
+  --background-color: #0f0817;
+  --white-color: #fff;
+  --violet-color: #7150d0;
+  --violet-color-rgb: rgb(113, 80, 208);
+  --background-color-rgb: rgb(255, 255, 255, 0.06);
+  --pink-color: #e75480;
+  --dark-purple: #301934;
+}
+
+html,
+body {
+  font-family: "Nunito", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  background-color: var(--background-color);
+  color: var(--white-color);
+}
+
+.wrapper {
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}

@@ -2,7 +2,7 @@ import { songsData } from "/data/songs.js";
 
 let songs = songsData;
 
-class MediaManager{
+class MediaManager {
 
     /* аудио-плеер */
     static media = document.getElementById('audio-player');
@@ -20,31 +20,31 @@ class MediaManager{
         this.audioModel.play();
         this.random.onclick = () => this.showRandom(index);
         this.colorVolume();
-       
+
     }
 
 
     /* закрытие аудиоплеера */
-    static closeAudioPlayer(event){
+    static closeAudioPlayer(event) {
         if (event.target === this.media) {
             this.media.style.display = "none";
             this.audioModel.pause();
             this.imgPlayOrStop.src = '/assets/images/svg/pause.svg';
         }
     }
-   
-    
+
+
     /* переключение музыки */
     static currentIndex = 0;
     static prevBtnModal = document.getElementById('btn-prev-modal');
     static nextBtnModal = document.getElementById('btn-next-modal');
     // переключение вперед 
-    static prevModal(){
+    static prevModal() {
         this.currentIndex = (this.currentIndex - 1 + songs.length) % songs.length;
         this.showAudioPlayer(this.currentIndex);
     }
     // переключение назад 
-    static nextModal(){
+    static nextModal() {
         this.currentIndex = (this.currentIndex + 1) % songs.length;
         this.showAudioPlayer(this.currentIndex);
     }
@@ -67,14 +67,14 @@ class MediaManager{
     /* прогресс аудио */
     static progress = document.getElementById('progress');
     // заставляем input двигаться с audio
-    static moveProgres(){
+    static moveProgres() {
         this.progress.value = this.audioModel.currentTime;
         this.progress.max = this.audioModel.duration;
         this.showTime(this.progress.value);
         this.colorProgress();
     };
     // заставляем audio двигаться с input
-    static moveAudo(){
+    static moveAudo() {
         this.audioModel.currentTime = this.progress.value;
         this.audioModel.play();
     };
@@ -97,6 +97,7 @@ class MediaManager{
     // начать сначала
     static restart = document.getElementById('btn-restart');
     static restartAudio = () => {
+        this.audioModel.play();
         this.audioModel.currentTime = 0;
         this.progress.value = 0;
     }
@@ -118,7 +119,7 @@ class MediaManager{
 
     /* громкость */
     static volumeControl = document.getElementById('volume');
-    static volume(){
+    static volume() {
         this.audioModel.volume = this.volumeControl.value;
         this.imgVolume.src = '/assets/images/svg/on_volume.svg';
         this.colorVolume();
@@ -134,7 +135,7 @@ class MediaManager{
     // переключатель громкости
     static btnVolume = document.getElementById('volume-dtn');
     static imgVolume = document.getElementById('volume-img');
-    static toggleVolume(){
+    static toggleVolume() {
         if (this.audioModel.volume) {
             this.imgVolume.src = '/assets/images/svg/off_volume.svg';
             this.audioModel.volume = 0;
