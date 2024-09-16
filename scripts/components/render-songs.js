@@ -1,5 +1,6 @@
 import Filter from "../../services/filter-manager.js";
 import MediaManager from "../../services/media-manager.js";
+import SongsManager from "../../services/songs-manager.js";
 
 
 export const renderSongs = (songs) => {
@@ -63,6 +64,7 @@ export const renderSongs = (songs) => {
 
     const buttonEdit = document.createElement('button');
     buttonEdit.className = 'btn-edit';
+    buttonEdit.id = 'btn-form-edit'
     btns.appendChild(buttonEdit);
 
     const imgEdit = document.createElement('img');
@@ -70,7 +72,7 @@ export const renderSongs = (songs) => {
     imgEdit.className = 'img-edit';
     buttonEdit.appendChild(imgEdit);
 
-    // buttonEdit.onclick = () => editSong(index);
+    buttonEdit.onclick = () => SongsManager.editSong(song.id);
 
     const buttonDelete = document.createElement('button');
     buttonDelete.className = 'btn-delete';

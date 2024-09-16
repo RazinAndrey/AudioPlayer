@@ -82,14 +82,14 @@
           accept="image/*"
         />
       </label>
-
-      <div
-        class="image-preview"
-        id="image-preview"
-      >
-        <span>Предпросмотр</span>
+      <div class="preview-block">
+          <div
+          class="image-preview"
+          id="image-preview"
+        >
+          <span>Предпросмотр</span>
+        </div>
       </div>
-
       <label class="custom-button">
         Загрузить музыку
         <input
@@ -107,31 +107,29 @@
       </div>
 
       <div class="btns-close-and-add">
-        <!-- <button
-          id="btn-add-form"
-          class="btn-add-form"
-          type="button"
+        <button
+          id="btn-edit"
+          class="btn-form"
+          type="submit"
         >
           Edit
-        </button> -->
+        </button>
         <button
-          id="btn-add-form"
-          class="btn-add-form"
+          id="btn-add"
+          class="btn-form"
           type="submit"
         >
           Add
         </button>
         <button
           id="close-form"
-          class="close-form"
+          class="btn-form"
           type="button"
         >
           Cencel
         </button>
       </div>
     </form>
-
-    <div id="imageGallery"></div>
     <script
       type="module"
       src="./app.js"

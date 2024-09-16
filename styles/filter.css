@@ -39,15 +39,15 @@
     border-radius: 10px;
 }
 
-.open-form{
+.open-form-add{
     border-radius: 50%;
-    background-color: #2e725a;
+    background-color: rgb(61, 97, 61);
     width: 20px;
     height: 20px;
     position: relative;
 }
-.open-form::before,
-.open-form::after{
+.open-form-add::before,
+.open-form-add::after{
     content: '';
     position: absolute;
     width: 2px;
@@ -56,10 +56,10 @@
     top: 50%;
     left: 50%;
 }
-.open-form::before{
+.open-form-add::before{
     transform: translateY(-50%) translateX(-50%);
 }
-.open-form::after{
+.open-form-add::after{
     transform: translateY(-50%) translateX(-50%) rotate(90deg);
 }
   

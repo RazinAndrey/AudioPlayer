@@ -27,8 +27,7 @@
 .author-form,
 .genre-form,
 .custom-button,
-.close-form,
-.btn-add-form {
+.btn-form {
     color: var(--white-color);
     font-size: 14px;
     border-radius: 10px;
@@ -48,7 +47,11 @@
     gap: 5px;
 }
 
-/* изображение */
+.preview-block{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 .image-preview {
     width: 200px;
     height: 200px;
@@ -58,11 +61,12 @@
     justify-content: center;
 }
 .image-preview img {
+   
     max-width: 100%;
     max-height: 100%;
 }
 input[type="file"] {
-    display: none; /* Скрываем стандартный инпут */
+    display: none;
 }
 .custom-button {
     cursor: pointer;

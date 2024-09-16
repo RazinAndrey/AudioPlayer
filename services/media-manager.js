@@ -4,12 +4,12 @@ let songs = songsData;
 
 class MediaManager {
 
-    /* аудио-плеер */
     static media = document.getElementById('audio-player');
     static titleModel = document.getElementById('title-modal');
     static authorModel = document.getElementById('author-modal');
     static imgModel = document.getElementById('img-modal');
     static audioModel = document.getElementById('audio-modal');
+
     // показ плеера
     static showAudioPlayer = (index) => {
         this.media.style.display = "block";
@@ -20,7 +20,6 @@ class MediaManager {
         this.audioModel.play();
         this.random.onclick = () => this.showRandom(index);
         this.colorVolume();
-
     }
 
 
@@ -68,8 +67,8 @@ class MediaManager {
     static progress = document.getElementById('progress');
     // заставляем input двигаться с audio
     static moveProgres() {
-        this.progress.value = this.audioModel.currentTime;
-        this.progress.max = this.audioModel.duration;
+        this.progress.value = Math.floor(this.audioModel.currentTime);
+        this.progress.max = Math.floor(this.audioModel.duration);
         this.showTime(this.progress.value);
         this.colorProgress();
     };

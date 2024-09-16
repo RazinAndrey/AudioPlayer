@@ -5,6 +5,7 @@ let songs = songsData;
 let genres = genresData;
 
 class GenresManager extends Filter {
+
     static currentIndex = 0;
     static itemsPerPage = 3; // количество элементов для отображения
 
@@ -27,7 +28,6 @@ class GenresManager extends Filter {
             btnGenre.className = 'btn-filter';
             btnGenre.textContent = genre;
             this.itemContainer.appendChild(btnGenre);
-
 
             btnGenre.onclick = () => {
                 const results = this.searchGenres(genre);

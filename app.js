@@ -16,9 +16,6 @@ Filter.searchInput.addEventListener('input', () => Filter.searchSongs(songs));
 Filter.btnLoved.onclick = () => Filter.showLoved(songs);
 
 
-
-
-
 // показать жанры
 GenresManager.showGenres();
 // предыдущий показ жанров
@@ -28,15 +25,21 @@ GenresManager.nextBtn.onclick = () => GenresManager.nextMethod();
 
 
 // открытие модального окна
-SongsManager.openModalButton.onclick = () => {
+SongsManager.openFormAdd.onclick = () => {
+    SongsManager.form.reset();
+    SongsManager.btnEdit.style.display = 'none';
+    SongsManager.btnAdd.style.display = 'block';
+    SongsManager.form.style.display = 'flex';
+    SongsManager.overlay.style.display = 'block';
 
-    form.style.display = 'flex';
-    overlay.style.display = 'block';
 };
 // закрытие модального окна по клику на кнопку
-SongsManager.closeModalButton.onclick = () => {
-    form.style.display = 'none';
-    overlay.style.display = 'none';
+SongsManager.closeForm.onclick = () => {
+    SongsManager.form.reset();
+    SongsManager.imagePreview.innerHTML = '<span>Предпросмотр</span>';
+    SongsManager.audioPreview.innerHTML = '<span>Название музыки</span>';
+    SongsManager.form.style.display = 'none';
+    SongsManager.overlay.style.display = 'none';
 };
 // предпоказ
 SongsManager.Preview();
@@ -48,8 +51,8 @@ SongsManager.form.addEventListener('submit', (event) => {
     SongsManager.addSong();
 })
 
-const addSongBtn = document.getElementById('btn-add-form');
-addSongBtn.onclick = () => SongsManager.addSong();
+// const addSongBtn = document.getElementById('btn-add');
+// addSongBtn.onclick = () => SongsManager.addSong();
 
 
 
@@ -70,4 +73,5 @@ MediaManager.restart.onclick = () => MediaManager.restartAudio();
 MediaManager.volumeControl.addEventListener('input', () => MediaManager.volume());
 // переключатель громкости
 MediaManager.btnVolume.onclick = () => MediaManager.toggleVolume();
+
 
