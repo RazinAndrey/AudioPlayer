@@ -6,6 +6,10 @@ let songs = songsData;
 
 class Filter {
 
+    constructor(data){
+        this.data = data;
+    }
+    
     // поиск
     static searchInput = document.getElementById('search-input');
     static searchSongs = (data) => {

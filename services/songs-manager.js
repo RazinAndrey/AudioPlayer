@@ -1,16 +1,20 @@
 import { songsData } from "../data/songs.js";
-import { genresData } from "../data/songs.js";
 import { renderSongs } from "../scripts/components/render-songs.js";
 
 const songs = songsData;
-const genres = genresData;
 
-class SongsManager {
+
+export class SongsManager {
+
+  constructor(songs = [], genres = []){
+    this.genres = genres;
+    this.songs = songs;
+  }
 
   static form = document.getElementById('form');
   static overlay = document.getElementById('overlay');
 
-  static openFormAdd = document.getElementById('open-form-add');
+  openFormAdd = document.getElementById('open-form-add');
   static openFormEdit = document.getElementById('open-form-edit');
   
   static btnAdd = document.getElementById('btn-add');
@@ -55,17 +59,7 @@ class SongsManager {
 
   static selectElement = document.getElementById('genre-form');
 
-  // жанры
-  static listGenres() {
-    genres.forEach(genre => {
-      const option = document.createElement('option');
-      option.value = genre;
-      option.textContent = genre;
-      option.className = 'option'
-      this.selectElement.appendChild(option);
-    });
-  }
-
+  
   static title = document.getElementById('title-form');
   static author = document.getElementById('author-form');
   // добаление

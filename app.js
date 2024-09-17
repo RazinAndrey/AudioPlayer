@@ -1,10 +1,14 @@
-import { songsData } from "./data/songs.js";
+import { genresData, songsData } from "./data/songs.js";
 import Filter from "./services/filter-manager.js";
 import SongsManager from "./services/songs-manager.js";
 import GenresManager from "./services/genres-manager.js";
 import MediaManager from "./services/media-manager.js";
+import { renderGenres } from "./scripts/components/render-genres.js";
+
+import { handleClick } from "./scripts/helpers/open-form.js";
 
 let songs = songsData;
+let genres = genresData;
 
 // показать всех изначально
 Filter.showAll(songs);
@@ -23,18 +27,22 @@ GenresManager.prevBtn.onclick = () => GenresManager.prevMethod();
 // следующий показ жанров
 GenresManager.nextBtn.onclick = () => GenresManager.nextMethod();
 
+const sc = new SongsManager(songs, genres); 
 
 // открытие модального окна
-SongsManager.openFormAdd.onclick = () => {
+sc.openFormAdd.onclick = (event) => {
+    handleClick(event);
     SongsManager.form.reset();
     SongsManager.btnEdit.style.display = 'none';
     SongsManager.btnAdd.style.display = 'block';
     SongsManager.form.style.display = 'flex';
     SongsManager.overlay.style.display = 'block';
-
 };
+
+
 // закрытие модального окна по клику на кнопку
-SongsManager.closeForm.onclick = () => {
+SongsManager.closeForm.onclick = (event) => {
+    handleClick(event);
     SongsManager.form.reset();
     SongsManager.imagePreview.innerHTML = '<span>Предпросмотр</span>';
     SongsManager.audioPreview.innerHTML = '<span>Название музыки</span>';
@@ -44,16 +52,12 @@ SongsManager.closeForm.onclick = () => {
 // предпоказ
 SongsManager.Preview();
 // показать ;анры 
-SongsManager.listGenres();
+renderGenres(genres);
 
 SongsManager.form.addEventListener('submit', (event) => {
     event.preventDefault();
     SongsManager.addSong();
 })
-
-// const addSongBtn = document.getElementById('btn-add');
-// addSongBtn.onclick = () => SongsManager.addSong();
-
 
 
 // закрыть плеер
@@ -75,3 +79,9 @@ MediaManager.volumeControl.addEventListener('input', () => MediaManager.volume()
 MediaManager.btnVolume.onclick = () => MediaManager.toggleVolume();
 
 
+// main.js
+import MyClass from "./scripts/Test.js";
+// import { songsModule } from "./scripts/modules/songs-module.js";
+
+const cl = new MyClass(songs);
+cl.method(); // Выведет: Метод вызван!

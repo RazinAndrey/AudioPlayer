@@ -5,7 +5,7 @@ let songs = songsData;
 let genres = genresData;
 
 class GenresManager extends Filter {
-
+    
     static currentIndex = 0;
     static itemsPerPage = 3; // количество элементов для отображения
 
@@ -42,10 +42,6 @@ class GenresManager extends Filter {
         this.prevBtn.disabled = (this.currentIndex === 0);
         this.nextBtn.disabled = (endIndex >= genres.length);
     }
-    constructor() {
-        this.value = null; // Изначально значение равно null
-    }
-
     // вперед
     static prevMethod() {
         if (this.currentIndex > 0) {
