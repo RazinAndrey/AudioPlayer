@@ -1,0 +1,3 @@
+class Filter { 
+    filter(array){}
+}

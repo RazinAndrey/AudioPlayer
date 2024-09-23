@@ -5,7 +5,6 @@ import GenresManager from "./services/genres-manager.js";
 import MediaManager from "./services/media-manager.js";
 import { renderGenres } from "./scripts/components/render-genres.js";
 
-import { handleClick } from "./scripts/helpers/open-form.js";
 
 let songs = songsData;
 let genres = genresData;
@@ -77,11 +76,3 @@ MediaManager.restart.onclick = () => MediaManager.restartAudio();
 MediaManager.volumeControl.addEventListener('input', () => MediaManager.volume());
 // переключатель громкости
 MediaManager.btnVolume.onclick = () => MediaManager.toggleVolume();
-
-
-// main.js
-import MyClass from "./scripts/Test.js";
-// import { songsModule } from "./scripts/modules/songs-module.js";
-
-const cl = new MyClass(songs);
-cl.method(); // Выведет: Метод вызван!
