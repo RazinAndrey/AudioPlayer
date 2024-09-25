@@ -1,4 +1,5 @@
-import { songsData } from "/data/songs.js";
+import { songsData } from "../../../data/songs-data.js";
+
 
 let songs = songsData;
 

@@ -1,89 +1,47 @@
-.filter {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
 .search-input {
-    padding: 15px 20px 15px 45px;
-    background-color: var(--background-color-rgb);
-    width: 100%;
-    border-radius: 12px;
-    font-size: 16px;
-    color: var(--white-color);
-    font-weight: 300;
-    background-image: url("/assets/images/svg/search.svg");
-    background-repeat: no-repeat;
-    background-position: left 10px center;
-} 
-
-.block-filter{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 5px;
+  padding: 15px 20px 15px 45px;
+  background-color: var(--background-color-rgb);
+  width: 100%;
+  border-radius: 10px;
+  font-size: 16px;
+  color: var(--white-color);
+  font-weight: 300;
+  background-image: url('/assets/images/svg/search.svg');
+  background-repeat: no-repeat;
+  background-position: left 10px center;
 }
 
-.block-btns-filter{
-    display: flex;
-    flex-wrap: wrap;
-    gap: 5px;
-    align-items: center;
+.block-filter {
+  display: flex;
+  gap: 5px;
+}
+.block-filter .btn-filter {
+  width: 100%;
+}
+
+.genres-items-block {
+  display: flex;
+  flex-wrap: wrap;
+}
+.genres-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+.genres-items .btn-filter {
+  width: 100%;
+  flex: 1 1;
 }
 
 .btn-filter {
-    color: var(--white-color);
-    background-color: var(--background-color-rgb);
-    padding: 10px;
-    font-size: 14px;
-    border-radius: 10px;
+  color: var(--white-color);
+  background-color: var(--background-color-rgb);
+  padding: 10px;
+  font-size: 14px;
+  border-radius: 10px;
 }
 
-.open-form-add{
-    border-radius: 50%;
-    background-color: rgb(61, 97, 61);
-    width: 20px;
-    height: 20px;
-    position: relative;
-}
-.open-form-add::before,
-.open-form-add::after{
-    content: '';
-    position: absolute;
-    width: 2px;
-    height: 8px;
-    background-color: var(--white-color);
-    top: 50%;
-    left: 50%;
-}
-.open-form-add::before{
-    transform: translateY(-50%) translateX(-50%);
-}
-.open-form-add::after{
-    transform: translateY(-50%) translateX(-50%) rotate(90deg);
-}
-  
-.result-null{
-    display: none;
-    font-size: 14px;
-    padding: 15px;
-}
-
-.active{
-    background-color: var(--pink-color);
-    opacity: 0.9; 
-}
-
-.genres-items-block,
-.genres-items {
-    display: flex;
-    gap: 5px;
-}
-
-
-.prev-btn:disabled, .next-btn:disabled {
-    background-color: var(--background-color-rgb);
-    color: #666; 
-    cursor: not-allowed; 
-    opacity: 0.6; 
+.active {
+  background-color: var(--pink-color);
+  opacity: 0.9;
 }

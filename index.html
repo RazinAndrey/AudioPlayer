@@ -15,124 +15,25 @@
       type="image/png"
       href="/assets/images/png/favicon.png"
     />
-    <title>Audio</title>
+    <title>Music</title>
   </head>
 
   <body>
-    <div class="wrapper">
-      <div
-        id="audio-player"
-        class="audio-player"
-      ></div>
-      <script>
-        fetch("/audio-player/audio-player.html")
-          .then((response) => response.text())
-          .then(
-            (html) => (document.getElementById("audio-player").innerHTML = html)
-          )
-          .catch((error) => console.error("Ошибка:", error));
-      </script>
-
-      <div
-        id="filter"
-        class="filter"
-      ></div>
-      <script>
-        fetch("/audio-filter/audio-filter.html")
-          .then((response) => response.text())
-          .then((html) => (document.getElementById("filter").innerHTML = html))
-          .catch((error) => console.error("Ошибка:", error));
-      </script>
-
-      <div id="songs-list"></div>
-    </div>
-
-    <div id="overlay"></div>
-    <form
-      id="form"
-      class="form"
-    >
-      <p>Название</p>
-      <input
-        id="title-form"
-        class="title-form"
-        type="text"
-        autocomplete="off"
-      />
-
-      <p>Автор</p>
-      <input
-        id="author-form"
-        class="author-form"
-        type="text"
-        autocomplete="off"
-      />
-
-      <p>Жанры</p>
-      <select
-        id="genre-form"
-        class="genre-form"
-      ></select>
-
-      <label class="custom-button">
-        Загрузить изображение
-        <input
-          type="file"
-          id="image-input"
-          accept="image/*"
-        />
-      </label>
-      <div class="preview-block">
-          <div
-          class="image-preview"
-          id="image-preview"
-        >
-          <span>Предпросмотр</span>
-        </div>
-      </div>
-      <label class="custom-button">
-        Загрузить музыку
-        <input
-          type="file"
-          id="audio-input"
-          accept="audio/*"
-        />
-      </label>
-
-      <div
-        id="audio-preview"
-        class="audio-preview"
-      >
-        <span>Название музки</span>
-      </div>
-
-      <div class="btns-close-and-add">
-        <button
-          id="btn-edit"
-          class="btn-form"
-          type="submit"
-        >
-          Edit
-        </button>
-        <button
-          id="btn-add"
-          class="btn-form"
-          type="submit"
-        >
-          Add
-        </button>
-        <button
-          id="close-form"
-          class="btn-form"
-          type="button"
-        >
-          Cencel
-        </button>
-      </div>
-    </form>
+    <div
+      id="audio-player"
+      class="audio-player"
+    ></div>
+    <script>
+      fetch('templates/audio-player.html')
+        .then((response) => response.text())
+        .then(
+          (html) => (document.getElementById('audio-player').innerHTML = html),
+        )
+        .catch((error) => console.error('Ошибка:', error));
+    </script>
     <script
       type="module"
-      src="./app.js"
+      src="/scripts/main.js"
     ></script>
   </body>
 </html>
