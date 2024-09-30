@@ -12,7 +12,7 @@ class FormAddComponent {
         form.className = 'form-add-content';
         form.textContent = 'Song Add';
         blockForm.appendChild(form);
-
+    
         this.blockInputs(form);
 
         this.blockGenres(form, genres);
@@ -122,7 +122,7 @@ class FormAddComponent {
         const addBtn = document.createElement('button');
         addBtn.id = 'btn-add';
         addBtn.className = 'btn-form';
-        addBtn.type = 'button';
+        addBtn.type = 'submit';
         addBtn.textContent = 'Add';
         addBtn.onclick = () => addSong();
 

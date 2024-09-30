@@ -1,3 +1,5 @@
+import Filter from "../../modules/filter/filter.js";
+import Loved from "../../modules/filter/loved.js";
 import MediaManager from "../../modules/media/media-manager.js";
 import { changeLoved } from "../../modules/songs/change-loved.js";
 import { deleteSong } from "../../modules/songs/delete-song.js";
@@ -14,8 +16,9 @@ class SongComponent {
       songItem.id = 'item-song';
       songItem.className = 'item-song';
       songsList.appendChild(songItem);
+      
       // просмотр одной песни
-      songItem.onclick = () => MediaManager.showAudioPlayer(index);
+      songItem.onclick = () => MediaManager.showAudioPlayer(song, index);
 
       const songImg = document.createElement('img');
       songImg.className = 'img-song';
@@ -59,7 +62,7 @@ class SongComponent {
       imgHeart.className = 'img-heart';
       buttonHeart.appendChild(imgHeart);
       // добавить в избранные
-      buttonHeart.onclick = () => changeLoved(songs, song.id);
+      buttonHeart.onclick = () => { changeLoved(songs, song.id) };
 
       const buttonEdit = document.createElement('button');
       buttonEdit.className = 'btn-edit';
@@ -71,7 +74,7 @@ class SongComponent {
       imgEdit.className = 'img-edit';
       buttonEdit.appendChild(imgEdit);
       // редактирование
-      buttonEdit.onclick = () => editSong(song.id);
+      buttonEdit.onclick = () => editSong(songs, song.id);
 
       const buttonDelete = document.createElement('button');
       buttonDelete.className = 'btn-delete';

@@ -1,3 +1,4 @@
+import Loved from "../modules/filter/loved.js";
 import FormAddComponent from "./forms/form-add-component.js";
 import FormEditComponent from "./forms/form-edit-component.js";
 import PreviewAdd from "./forms/prewiew-add-component.js";

@@ -18,4 +18,5 @@ export const mediaClient = () => {
     MediaManager.volumeControl.addEventListener('input', () => MediaManager.volume());
     // переключатель громкости
     MediaManager.btnVolume.onclick = () => MediaManager.toggleVolume();
+
 }

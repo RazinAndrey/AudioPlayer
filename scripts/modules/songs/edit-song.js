@@ -3,9 +3,9 @@ import { activeBtn } from "../filter/active.js";
 
 import Filter from "../filter/filter.js";
 
-let songs = songsData;
 
-export const editSong = (songId) => {
+
+export const editSong = (songs, songId) => {
 
     const formEdit = document.getElementById('form-edit');
     const formEditContent = document.getElementById('form-edit-content');
@@ -61,38 +61,59 @@ export const editSong = (songId) => {
         });
 
 
+    const inputs = formEditContent.querySelectorAll('input');
+    
+    inputs.forEach(input => {
+        input.addEventListener('input', checkForm);
+    });
+    
     const btnEdit = document.getElementById('btn-edit');
-    if (title.value !== '') {
-        btnEdit.disabled = false;
-        btnEdit.onclick = () => {
 
-            songs[indexSong] = {
-                title: title.value,
-                author: author.value,
-                genre: selectElement.value,
-                loved: songs[indexSong].loved ? true : false,
-                image: imageInput.files[0] ? URL.createObjectURL(imageInput.files[0]) : songs[indexSong].image,
-                audio: audioInput.files[0] ? URL.createObjectURL(audioInput.files[0]) : songs[indexSong].audio
-            };
+    btnEdit.onclick = () => {
+        songs[indexSong] = {
+            title: title.value,
+            author: author.value,
+            genre: selectElement.value,
+            loved: songs[indexSong].loved ? true : false,
+            image: imageInput.files[0] ? URL.createObjectURL(imageInput.files[0]) : songs[indexSong].image,
+            audio: audioInput.files[0] ? URL.createObjectURL(audioInput.files[0]) : songs[indexSong].audio
+        };
 
-            formEdit.style.display = 'none';
+        formEdit.style.display = 'none';
 
-            Filter.showResult(songs);
+        Filter.showResult(songs);
 
-            formEditContent.reset();
+        formEditContent.reset();
 
-            const btnAll = document.getElementById('btn-all');
-            activeBtn(btnAll);
-        }
-    } else {
-        btnEdit.disabled = true;
-        console.log(111);
+        const btnAll = document.getElementById('btn-all');
+        activeBtn(btnAll);
     }
-
 }
+
+
+function checkForm() {
+
+    const formEditContent = document.getElementById('form-edit-content');
+    const inputs = formEditContent.querySelectorAll('input');
+    const btnEdit = document.getElementById('btn-edit');
+
+    let allFilled = true;
+    inputs.forEach(input => {
+        if (!input.value.trim()) {
+            allFilled = false;
+        }
+    });
+
+    btnEdit.disabled = !allFilled;
+    btnEdit.classList.toggle('enabled', allFilled);
+}
+
 
 export const closeEditForm = () => {
     const formEdit = document.getElementById('form-edit');
+    const formEditContent = document.getElementById('form-edit-content');
+
+    formEditContent.reset();
     formEdit.style.display = 'none';
 }
 

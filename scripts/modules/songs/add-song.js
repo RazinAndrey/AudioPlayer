@@ -4,9 +4,10 @@ import Filter from "../filter/filter.js";
 let songs = songsData;
 
 export const addSong = () => {
-    const formEdit = document.getElementById('form-add');
-    const formEditContent = document.getElementById('form-add-content');
-    formEdit.style.display = 'block';
+
+    const formAdd= document.getElementById('form-add');
+    const formAddContent = document.getElementById('form-add-content');
+    formAdd.style.display = 'block';
 
     const title = document.getElementById('title-form-add');
     const author = document.getElementById('author-form-add');
@@ -14,17 +15,24 @@ export const addSong = () => {
     const imageInput = document.getElementById('image-input-add');
     const audioInput = document.getElementById('audio-input-add');
 
-    const newTitle = title.value;
-    const newAuthor = author.value;
+    const btnAdd = document.getElementById('btn-add');
+    btnAdd.disabled = true;
+
+
+    const newTitle = title.value.trim();
+    const newAuthor = author.value.trim();
     const newMusicFile = audioInput.files[0];
     const newImageFile = imageInput.files[0];
     const newGenre = selectElement.value;
 
-    const btnAdd = document.getElementById('btn-add');
+
+    const inputs = formAddContent.querySelectorAll('input');
+    
+    inputs.forEach(input => {
+        input.addEventListener('input', checkForm);
+    });
 
     if (newMusicFile && newImageFile) {
-
-        btnAdd.disabled = false;
 
         const readerMusic = new FileReader();
         const readerImage = new FileReader();
@@ -53,13 +61,27 @@ export const addSong = () => {
 
         readerImage.readAsDataURL(newImageFile);
 
-        formEditContent.reset();
+        formAddContent.reset();
 
         closeAddForm();
-    } else {
-        btnAdd.disabled = true;
-        console.log(111);
     }
+}
+
+function checkForm() {
+
+    const formAddContent = document.getElementById('form-add-content');
+    const inputs = formAddContent.querySelectorAll('input');
+    const btnAdd = document.getElementById('btn-add');
+
+    let allFilled = true;
+    inputs.forEach(input => {
+        if (input.value.trim() === '') {
+            allFilled = false;
+        }
+    });
+
+    btnAdd.disabled = !allFilled;
+    btnAdd.classList.toggle('enabled', allFilled);
 }
 
 export const closeAddForm = () => {

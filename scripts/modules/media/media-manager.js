@@ -12,12 +12,12 @@ class MediaManager {
     static audioModel = document.getElementById('audio-modal');
 
     // показ плеера
-    static showAudioPlayer = (index) => {
+    static showAudioPlayer = (song, index) => {
         this.media.style.display = "block";
-        this.titleModel.textContent = songs[index].title;
-        this.authorModel.textContent = songs[index].author;
-        this.imgModel.src = songs[index].image;
-        this.audioModel.src = songs[index].audio;
+        this.titleModel.textContent = song.title;
+        this.authorModel.textContent = song.author;
+        this.imgModel.src = song.image;
+        this.audioModel.src = song.audio;
         this.audioModel.play();
         this.random.onclick = () => this.showRandom(index);
         this.colorVolume();
@@ -41,12 +41,12 @@ class MediaManager {
     // переключение вперед 
     static prevModal() {
         this.currentIndex = (this.currentIndex - 1 + songs.length) % songs.length;
-        this.showAudioPlayer(this.currentIndex);
+        this.showAudioPlayer(songs[this.currentIndex], this.currentIndex);
     }
     // переключение назад 
     static nextModal() {
         this.currentIndex = (this.currentIndex + 1) % songs.length;
-        this.showAudioPlayer(this.currentIndex);
+        this.showAudioPlayer(songs[this.currentIndex], this.currentIndex);
     }
 
 
@@ -111,9 +111,10 @@ class MediaManager {
             randomIndex = Math.floor(Math.random() * songs.length);
         } while (randomIndex === index);
 
-        const song = randomIndex;
+        const songIndex = randomIndex;
+        this.currentIndex = (this.currentIndex - 1 + songs.length) % songs.length;
 
-        this.showAudioPlayer(song);
+        this.showAudioPlayer(songs[index], songIndex);
     }
 
 

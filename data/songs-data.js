@@ -10,8 +10,8 @@ export const genresData = [
 export const songsData = [
     {
         id: 1,
-        title: 'Норм',
-        author: 'Крутой Автор',
+        title: 'I Got Love',
+        author: 'MiyaGi feat. Эндшпиль & Рем Дигга',
         genre: genresData[0],
         image: '/assets/images/png/image1.png',
         audio: '/assets/music/music1.mp3',
@@ -19,8 +19,8 @@ export const songsData = [
     },
     {
         id: 2,
-        title: 'NRRR',
-        author: 'Жили, Были',
+        title: 'Bad romance',
+        author: 'Lady Gaga',
         genre: genresData[1],
         image: '/assets/images/png/image2.png',
         audio: '/assets/music/music2.mp3',
@@ -28,8 +28,8 @@ export const songsData = [
     },
     {
         id: 3,
-        title: 'Привыкаю',
-        author: 'MACAN, A.V.G',
+        title: 'La La La',
+        author: 'Shakira',
         genre: genresData[1],
         image: '/assets/images/png/image3.png',
         audio: '/assets/music/music3.mp3',
@@ -37,38 +37,38 @@ export const songsData = [
     },
     {
         id: 4,
-        title: '!!!!!!!',
-        author: 'Татьяна Куртукова',
+        title: 'Крутой трэк',
+        author: 'Крутой автор',
         genre: genresData[1],
         image: '/assets/images/jpg/image4.jpg',
-        audio: '/assets/music/music1.mp3',
+        audio: '/assets/music/music4.mp3',
         loved: false
     },
     {
         id: 5,
-        title: 'Привыкаю',
-        author: 'MACAN, A.V.G',
+        title: 'Какое-то название',
+        author: 'Какой-то автор',
         genre: genresData[3],
         image: '/assets/images/jpg/image5.jpg',
-        audio: '/assets/music/music3.mp3',
+        audio: '/assets/music/music5.mp3',
         loved: false
     },
     {
         id: 6,
-        title: 'NRRR',
-        author: 'Jakone, Kiliana',
+        title: 'Супер название',
+        author: 'Супер Автор',
         genre: genresData[4],
         image: '/assets/images/jpg/image6.jpg',
-        audio: '/assets/music/music2.mp3',
+        audio: '/assets/music/music6.mp3',
         loved: false
     },
     {
         id: 7,
-        title: 'eqwewqe',
-        author: 'MACAN, A.V.G',
+        title: 'Dior',
+        author: 'Pop Smoke',
         genre: genresData[3],
         image: '/assets/images/jpg/image7.jpg',
-        audio: '/assets/music/music3.mp3',
+        audio: '/assets/music/music7.mp3',
         loved: true
     },
 
