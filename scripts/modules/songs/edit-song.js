@@ -3,9 +3,9 @@ import { activeBtn } from "../filter/active.js";
 
 import Filter from "../filter/filter.js";
 
+let songs = songsData;
 
-
-export const editSong = (songs, songId) => {
+export const editSong = (songId) => {
 
     const formEdit = document.getElementById('form-edit');
     const formEditContent = document.getElementById('form-edit-content');

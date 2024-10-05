@@ -1,4 +1,5 @@
 import { songsData } from "../../../data/songs-data.js";
+import { activeBtn } from "../filter/active.js";
 import Filter from "../filter/filter.js";
 
 let songs = songsData;
@@ -64,6 +65,9 @@ export const addSong = () => {
         formAddContent.reset();
 
         closeAddForm();
+
+        const btnAll = document.getElementById('btn-all');
+        activeBtn(btnAll);
     }
 }
 

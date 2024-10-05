@@ -74,7 +74,7 @@ class SongComponent {
       imgEdit.className = 'img-edit';
       buttonEdit.appendChild(imgEdit);
       // редактирование
-      buttonEdit.onclick = () => editSong(songs, song.id);
+      buttonEdit.onclick = () => editSong(song.id);
 
       const buttonDelete = document.createElement('button');
       buttonDelete.className = 'btn-delete';
